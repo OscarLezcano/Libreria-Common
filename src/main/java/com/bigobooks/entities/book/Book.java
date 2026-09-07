@@ -23,6 +23,8 @@ public class Book {
     @GeneratedValue
     private Long id;
 
+    private String CoverUrl;
+
     @Column(nullable = false, unique = true)
     private String title;
 
