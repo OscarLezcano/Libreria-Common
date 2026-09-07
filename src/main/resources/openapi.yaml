@@ -1,0 +1,169 @@
+openapi: 3.0.3
+info:
+  title: BigoBooks API
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    UserAccountDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+        passwordHash:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        roleId:
+          type: integer
+          format: int64
+        wishlist:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookDto'
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    BookDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        coverUrl:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        genreIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        authorIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+    GenreDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    AuthorDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    SaleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        totalPrice:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        saleDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleDetailDto'
+    SaleDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        bookId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+        price:
+          type: integer
+          format: int64
+        saleId:
+          type: integer
+          format: int64
+    RentDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        totalPrice:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        rentDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/RentDetailDto'
+    RentDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        bookId:
+          type: integer
+          format: int64
+        price:
+          type: integer
+          format: int64
+        monthsRented:
+          type: integer
+        returnDate:
+          type: string
+          format: date
+        rentId:
+          type: integer
+          format: int64
+    PromotionDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        discount:
+          type: integer
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        bookIds:
+          type: array
+          items:
+            type: integer
+            format: int64
