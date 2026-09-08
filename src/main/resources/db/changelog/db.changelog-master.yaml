@@ -1,0 +1,739 @@
+databaseChangeLog:
+- changeSet:
+    id: 1788897471003-1
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: promotion_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: description
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: discount
+            type: INTEGER
+        - column:
+            name: end_date
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: start_date
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: title
+            type: VARCHAR(255)
+        tableName: promotion
+- changeSet:
+    id: 1788897471003-2
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: role_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        tableName: role
+- changeSet:
+    id: 1788897471003-3
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: genre_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        tableName: genre
+- changeSet:
+    id: 1788897471003-4
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: book_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: cover_url
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: description
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: title
+            type: VARCHAR(255)
+        tableName: book
+- changeSet:
+    id: 1788897471003-5
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: user_account_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: create_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: email
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: password_hash
+            type: VARCHAR(255)
+        - column:
+            name: role_id
+            type: BIGINT
+        tableName: user_account
+- changeSet:
+    id: 1788897471003-6
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: author_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        tableName: author
+- changeSet:
+    id: 1788897471003-7
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: title
+        constraintName: uk3yqon591gdheq9iehre8nykm
+        tableName: promotion
+- changeSet:
+    id: 1788897471003-8
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: uk8sewwnpamngi6b1dwaa88askk
+        tableName: role
+- changeSet:
+    id: 1788897471003-9
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: ukctffrbu4484ft8dlsa5vmqdka
+        tableName: genre
+- changeSet:
+    id: 1788897471003-10
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: title
+        constraintName: ukg0286ag1dlt4473st1ugemd0m
+        tableName: book
+- changeSet:
+    id: 1788897471003-11
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: email
+        constraintName: ukhl02wv5hym99ys465woijmfib
+        tableName: user_account
+- changeSet:
+    id: 1788897471003-12
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: ukor6k6jmywerxbme223c988bmg
+        tableName: author
+- changeSet:
+    id: 1788897471003-13
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: author_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-14
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: book_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-15
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: genre_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-16
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: promotion_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-17
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: rent_detail_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-18
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: rent_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-19
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: role_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-20
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: sale_detail_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-21
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: sale_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-22
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: user_account_seq
+        startValue: 1
+- changeSet:
+    id: 1788897471003-23
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: book_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: author_id
+            type: BIGINT
+        tableName: book_author
+- changeSet:
+    id: 1788897471003-24
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: book_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: genre_id
+            type: BIGINT
+        tableName: book_genre
+- changeSet:
+    id: 1788897471003-25
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: promotion_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: book_id
+            type: BIGINT
+        tableName: book_promotion
+- changeSet:
+    id: 1788897471003-26
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: rent_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: total_price
+            type: INTEGER
+        - column:
+            name: user_id
+            type: BIGINT
+        tableName: rent
+- changeSet:
+    id: 1788897471003-27
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: rent_detail_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: months_rented
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: price
+            type: BIGINT
+        - column:
+            name: return_date
+            type: date
+        - column:
+            name: book_id
+            type: BIGINT
+        - column:
+            name: rent_id
+            type: BIGINT
+        tableName: rent_detail
+- changeSet:
+    id: 1788897471003-28
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: sale_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: create_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: total_price
+            type: INTEGER
+        - column:
+            name: user_id
+            type: BIGINT
+        tableName: sale
+- changeSet:
+    id: 1788897471003-29
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: sale_detail_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: price
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: quantity
+            type: INTEGER
+        - column:
+            name: book_id
+            type: BIGINT
+        - column:
+            name: sales_id
+            type: BIGINT
+        tableName: sale_detail
+- changeSet:
+    id: 1788897471003-30
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: user_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: book_id
+            type: BIGINT
+        tableName: user_wishlist
+- changeSet:
+    id: 1788897471003-31
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: user_wishlist
+        constraintName: fk2qmjbrb72qi7lwxfgjdptkkjp
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: user_account
+        validate: true
+- changeSet:
+    id: 1788897471003-32
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role_id
+        baseTableName: user_account
+        constraintName: fk4j8uoaeve853dcbl0tjd0yoq0
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: role
+        validate: true
+- changeSet:
+    id: 1788897471003-33
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: book_genre
+        constraintName: fk52evq6pdc5ypanf41bij5u218
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
+        validate: true
+- changeSet:
+    id: 1788897471003-34
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: genre_id
+        baseTableName: book_genre
+        constraintName: fk8l6ops8exmjrlr89hmfow4mmo
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: genre
+        validate: true
+- changeSet:
+    id: 1788897471003-35
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: sale_detail
+        constraintName: fk91uqq7dim9lgoie4mi57rtm7o
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
+        validate: true
+- changeSet:
+    id: 1788897471003-36
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: author_id
+        baseTableName: book_author
+        constraintName: fkbjqhp85wjv8vpr0beygh6jsgo
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: author
+        validate: true
+- changeSet:
+    id: 1788897471003-37
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: sales_id
+        baseTableName: sale_detail
+        constraintName: fkd26i39557gyx39v8thdssj25k
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: sale
+        validate: true
+- changeSet:
+    id: 1788897471003-38
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: rent_detail
+        constraintName: fkdoiuf2u4n6sqft8gr32q4ldgj
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
+        validate: true
+- changeSet:
+    id: 1788897471003-39
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: book_promotion
+        constraintName: fkds43w2g08ff4n0yy2awxt7cwc
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
+        validate: true
+- changeSet:
+    id: 1788897471003-40
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: user_wishlist
+        constraintName: fkff3e4hjuon9vbc35w8rr6ur88
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
+        validate: true
+- changeSet:
+    id: 1788897471003-41
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: sale
+        constraintName: fkgsjc1sceh1okphcpqw04o8vdq
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: user_account
+        validate: true
+- changeSet:
+    id: 1788897471003-42
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: book_author
+        constraintName: fkhwgu59n9o80xv75plf9ggj7xn
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
+        validate: true
+- changeSet:
+    id: 1788897471003-43
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: rent
+        constraintName: fkkqbqt48d6n1fhsmyapwdohqc5
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: user_account
+        validate: true
+- changeSet:
+    id: 1788897471003-44
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: rent_id
+        baseTableName: rent_detail
+        constraintName: fkky540fnlbidllscjnfollinrf
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: rent
+        validate: true
+- changeSet:
+    id: 1788897471003-45
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: promotion_id
+        baseTableName: book_promotion
+        constraintName: fklsyrj36wd210vqv2c2kj9brlg
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: promotion
+        validate: true
+

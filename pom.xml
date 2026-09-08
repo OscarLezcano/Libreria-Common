@@ -179,7 +179,7 @@
 					<url>jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:6543/postgres</url>
 					<username>postgres.csislnxjwrlwdvwoyaao</username>
 					<password>3453*Claro*3453</password>
-					<outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</outputChangeLogFile>
+					<outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</outputChangeLogFile>
 				</configuration>
 			</plugin>
 			<plugin>
