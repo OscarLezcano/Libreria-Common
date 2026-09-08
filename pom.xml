@@ -172,6 +172,17 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>5.0.3</version>
+				<configuration>
+					<url>jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:6543/postgres</url>
+					<username>postgres.csislnxjwrlwdvwoyaao</username>
+					<password>3453*Claro*3453</password>
+					<outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</outputChangeLogFile>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<executions>
