@@ -2,11 +2,10 @@ package com.bigobooks.entities.rents;
 
 import java.time.LocalDate;
 
+import com.bigobooks.entities.BaseEntity;
 import com.bigobooks.entities.book.Book;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
@@ -15,10 +14,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class RentDetail {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class RentDetail extends BaseEntity {
 
     @ManyToOne()
     @JoinColumn(name = "book_id")

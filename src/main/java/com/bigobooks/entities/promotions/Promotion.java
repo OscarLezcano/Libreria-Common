@@ -3,12 +3,11 @@ package com.bigobooks.entities.promotions;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.bigobooks.entities.BaseEntity;
 import com.bigobooks.entities.book.Book;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -18,10 +17,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Promotion {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Promotion extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String title;

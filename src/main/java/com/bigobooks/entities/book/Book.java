@@ -2,10 +2,10 @@ package com.bigobooks.entities.book;
 
 import java.util.List;
 
+import com.bigobooks.entities.BaseEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -18,10 +18,7 @@ import com.bigobooks.entities.promotions.Promotion;
 @Entity
 @Getter
 @Setter
-public class Book {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Book extends BaseEntity {
 
     private String CoverUrl;
 
