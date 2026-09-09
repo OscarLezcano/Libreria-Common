@@ -8,20 +8,12 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>4.1.1</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath />
 	</parent>
 	<groupId>com.bigobooks</groupId>
 	<artifactId>bigobooks</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BigoBooks</name>
-	<description />
-	<url />
-	<licenses>
-		<license />
-	</licenses>
-	<developers>
-		<developer />
-	</developers>
 	<scm>
 		<connection />
 		<developerConnection />
@@ -145,9 +137,6 @@
 								<bigDecimalAsString>true</bigDecimalAsString>
 								<generateJsonIncludeAnnotations>false</generateJsonIncludeAnnotations>
 								<generateJsonSetterNullsAnnotations>false</generateJsonSetterNullsAnnotations>
-								<!--
-								<apiPackage>com.example.springbootopenapi.controller</apiPackage>
-								<modelPackage>com.example.springbootopenapi.dto</modelPackage> -->
 								<apiPackage>com.bigobooks.controller</apiPackage>
 								<modelPackage>com.bigobooks.dto</modelPackage>
 							</configOptions>
