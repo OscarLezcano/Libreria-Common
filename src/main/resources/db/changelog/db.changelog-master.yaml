@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1789004719681-1
+    id: 1789068311131-1
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -36,9 +36,14 @@ databaseChangeLog:
               nullable: false
             name: created_at
             type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
         tableName: promotion
 - changeSet:
-    id: 1789004719681-2
+    id: 1789068311131-2
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -60,9 +65,14 @@ databaseChangeLog:
               nullable: false
             name: created_at
             type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
         tableName: role
 - changeSet:
-    id: 1789004719681-3
+    id: 1789068311131-3
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -84,9 +94,14 @@ databaseChangeLog:
               nullable: false
             name: created_at
             type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
         tableName: genre
 - changeSet:
-    id: 1789004719681-4
+    id: 1789068311131-4
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -116,9 +131,14 @@ databaseChangeLog:
               nullable: false
             name: created_at
             type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
         tableName: book
 - changeSet:
-    id: 1789004719681-5
+    id: 1789068311131-5
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -153,9 +173,24 @@ databaseChangeLog:
               nullable: false
             name: created_at
             type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: last_name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
         tableName: user_account
 - changeSet:
-    id: 1789004719681-6
+    id: 1789068311131-6
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -177,9 +212,14 @@ databaseChangeLog:
               nullable: false
             name: created_at
             type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
         tableName: author
 - changeSet:
-    id: 1789004719681-7
+    id: 1789068311131-7
     author: cheemstos (generated)
     changes:
     - addUniqueConstraint:
@@ -187,7 +227,7 @@ databaseChangeLog:
         constraintName: uk3yqon591gdheq9iehre8nykm
         tableName: promotion
 - changeSet:
-    id: 1789004719681-8
+    id: 1789068311131-8
     author: cheemstos (generated)
     changes:
     - addUniqueConstraint:
@@ -195,7 +235,7 @@ databaseChangeLog:
         constraintName: uk8sewwnpamngi6b1dwaa88askk
         tableName: role
 - changeSet:
-    id: 1789004719681-9
+    id: 1789068311131-9
     author: cheemstos (generated)
     changes:
     - addUniqueConstraint:
@@ -203,7 +243,7 @@ databaseChangeLog:
         constraintName: ukctffrbu4484ft8dlsa5vmqdka
         tableName: genre
 - changeSet:
-    id: 1789004719681-10
+    id: 1789068311131-10
     author: cheemstos (generated)
     changes:
     - addUniqueConstraint:
@@ -211,7 +251,7 @@ databaseChangeLog:
         constraintName: ukg0286ag1dlt4473st1ugemd0m
         tableName: book
 - changeSet:
-    id: 1789004719681-11
+    id: 1789068311131-11
     author: cheemstos (generated)
     changes:
     - addUniqueConstraint:
@@ -219,7 +259,7 @@ databaseChangeLog:
         constraintName: ukhl02wv5hym99ys465woijmfib
         tableName: user_account
 - changeSet:
-    id: 1789004719681-12
+    id: 1789068311131-12
     author: cheemstos (generated)
     changes:
     - addUniqueConstraint:
@@ -227,7 +267,7 @@ databaseChangeLog:
         constraintName: ukor6k6jmywerxbme223c988bmg
         tableName: author
 - changeSet:
-    id: 1789004719681-13
+    id: 1789068311131-13
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -240,7 +280,7 @@ databaseChangeLog:
         sequenceName: author_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-14
+    id: 1789068311131-14
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -253,7 +293,7 @@ databaseChangeLog:
         sequenceName: book_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-15
+    id: 1789068311131-15
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -266,7 +306,7 @@ databaseChangeLog:
         sequenceName: genre_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-16
+    id: 1789068311131-16
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -279,7 +319,7 @@ databaseChangeLog:
         sequenceName: promotion_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-17
+    id: 1789068311131-17
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -292,7 +332,7 @@ databaseChangeLog:
         sequenceName: rent_detail_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-18
+    id: 1789068311131-18
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -305,7 +345,7 @@ databaseChangeLog:
         sequenceName: rent_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-19
+    id: 1789068311131-19
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -318,7 +358,7 @@ databaseChangeLog:
         sequenceName: role_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-20
+    id: 1789068311131-20
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -331,7 +371,7 @@ databaseChangeLog:
         sequenceName: sale_detail_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-21
+    id: 1789068311131-21
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -344,7 +384,7 @@ databaseChangeLog:
         sequenceName: sale_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-22
+    id: 1789068311131-22
     author: cheemstos (generated)
     changes:
     - createSequence:
@@ -357,7 +397,7 @@ databaseChangeLog:
         sequenceName: user_account_seq
         startValue: 1
 - changeSet:
-    id: 1789004719681-23
+    id: 1789068311131-23
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -374,7 +414,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: book_author
 - changeSet:
-    id: 1789004719681-24
+    id: 1789068311131-24
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -391,7 +431,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: book_genre
 - changeSet:
-    id: 1789004719681-25
+    id: 1789068311131-25
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -408,7 +448,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: book_promotion
 - changeSet:
-    id: 1789004719681-26
+    id: 1789068311131-26
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -433,9 +473,14 @@ databaseChangeLog:
         - column:
             name: user_id
             type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
         tableName: rent
 - changeSet:
-    id: 1789004719681-27
+    id: 1789068311131-27
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -471,9 +516,14 @@ databaseChangeLog:
               nullable: false
             name: created_at
             type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
         tableName: rent_detail
 - changeSet:
-    id: 1789004719681-28
+    id: 1789068311131-28
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -503,9 +553,14 @@ databaseChangeLog:
               nullable: false
             name: created_at
             type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
         tableName: sale
 - changeSet:
-    id: 1789004719681-29
+    id: 1789068311131-29
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -538,9 +593,14 @@ databaseChangeLog:
               nullable: false
             name: created_at
             type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
         tableName: sale_detail
 - changeSet:
-    id: 1789004719681-30
+    id: 1789068311131-30
     author: cheemstos (generated)
     changes:
     - createTable:
@@ -557,7 +617,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: user_wishlist
 - changeSet:
-    id: 1789004719681-31
+    id: 1789068311131-31
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -572,7 +632,7 @@ databaseChangeLog:
         referencedTableName: user_account
         validate: true
 - changeSet:
-    id: 1789004719681-32
+    id: 1789068311131-32
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -587,7 +647,7 @@ databaseChangeLog:
         referencedTableName: role
         validate: true
 - changeSet:
-    id: 1789004719681-33
+    id: 1789068311131-33
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -602,7 +662,7 @@ databaseChangeLog:
         referencedTableName: book
         validate: true
 - changeSet:
-    id: 1789004719681-34
+    id: 1789068311131-34
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -617,7 +677,7 @@ databaseChangeLog:
         referencedTableName: genre
         validate: true
 - changeSet:
-    id: 1789004719681-35
+    id: 1789068311131-35
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -632,7 +692,7 @@ databaseChangeLog:
         referencedTableName: book
         validate: true
 - changeSet:
-    id: 1789004719681-36
+    id: 1789068311131-36
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -647,7 +707,7 @@ databaseChangeLog:
         referencedTableName: author
         validate: true
 - changeSet:
-    id: 1789004719681-37
+    id: 1789068311131-37
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -662,7 +722,7 @@ databaseChangeLog:
         referencedTableName: sale
         validate: true
 - changeSet:
-    id: 1789004719681-38
+    id: 1789068311131-38
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -677,7 +737,7 @@ databaseChangeLog:
         referencedTableName: book
         validate: true
 - changeSet:
-    id: 1789004719681-39
+    id: 1789068311131-39
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -692,7 +752,7 @@ databaseChangeLog:
         referencedTableName: book
         validate: true
 - changeSet:
-    id: 1789004719681-40
+    id: 1789068311131-40
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -707,7 +767,7 @@ databaseChangeLog:
         referencedTableName: book
         validate: true
 - changeSet:
-    id: 1789004719681-41
+    id: 1789068311131-41
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -722,7 +782,7 @@ databaseChangeLog:
         referencedTableName: user_account
         validate: true
 - changeSet:
-    id: 1789004719681-42
+    id: 1789068311131-42
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -737,7 +797,7 @@ databaseChangeLog:
         referencedTableName: book
         validate: true
 - changeSet:
-    id: 1789004719681-43
+    id: 1789068311131-43
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -752,7 +812,7 @@ databaseChangeLog:
         referencedTableName: user_account
         validate: true
 - changeSet:
-    id: 1789004719681-44
+    id: 1789068311131-44
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
@@ -767,7 +827,7 @@ databaseChangeLog:
         referencedTableName: rent
         validate: true
 - changeSet:
-    id: 1789004719681-45
+    id: 1789068311131-45
     author: cheemstos (generated)
     changes:
     - addForeignKeyConstraint:
