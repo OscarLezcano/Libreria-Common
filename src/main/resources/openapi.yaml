@@ -14,8 +14,6 @@ components:
           format: int64
         email:
           type: string
-        passwordHash:
-          type: string
         createdAt:
           type: string
           format: date-time
