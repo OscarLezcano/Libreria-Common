@@ -100,12 +100,6 @@
 			<artifactId>jackson-databind-nullable</artifactId>
 			<version>0.2.6</version>
 		</dependency>
-		<dependency>
-			<groupId>me.paulschwarz</groupId>
-			<artifactId>springboot4-dotenv</artifactId>
-			<version>5.1.0</version>
-			<scope>compile</scope>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -176,7 +170,7 @@
 						</goals>
 						<configuration>
 							<files>
-								<file>${project.basedir}/.env</file>
+								<file>${project.basedir}/src/main/resources/private.properties</file>
 							</files>
 							<quiet>true</quiet>
 						</configuration>
@@ -188,9 +182,9 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>5.0.3</version>
 				<configuration>
-					<url>${DB_URL}</url>
-					<username>${DB_USERNAME}</username>
-					<password>${DB_PASSWORD}</password>
+					<url>${db.url}</url>
+					<username>${db.username}</username>
+					<password>${db.password}</password>
 					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
 					<outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</outputChangeLogFile>
 				</configuration>
