@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import com.bigobooks.entities.BaseEntity;
 import com.bigobooks.entities.book.Book;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -24,10 +25,14 @@ public class RentDetail extends BaseEntity {
 
     private int monthsRented;
 
+    @Column(nullable = false)
     private LocalDate returnDate;
 
     @ManyToOne()
     @JoinColumn(name = "rent_id")
     private Rent rent;
 
+    public boolean isActive() {
+        return returnDate.isAfter(LocalDate.now());
+    }
 }

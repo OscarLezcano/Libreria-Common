@@ -21,6 +21,12 @@ import lombok.Setter;
 @Setter
 public class UserAccount extends BaseEntity {
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String lastName;
+
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -37,4 +43,8 @@ public class UserAccount extends BaseEntity {
     @ManyToMany
     @JoinTable(name = "user_wishlist", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> wishlist;
+
+    public String getFullName() {
+        return name + " " + lastName;
+    }
 }
