@@ -170,7 +170,8 @@
 						</goals>
 						<configuration>
 							<files>
-								<file>${project.basedir}/src/main/resources/private.properties</file>
+								<file>
+									${project.basedir}/src/main/resources/config/private.properties</file>
 							</files>
 							<quiet>true</quiet>
 						</configuration>
