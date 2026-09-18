@@ -18,7 +18,7 @@ import lombok.Setter;
 public class Rent extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = true)
     private UserAccount userAccount;
     // private SalesStatus status; // Deber ser un enum, lo hare mas tarde
 
