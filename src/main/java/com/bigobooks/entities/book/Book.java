@@ -24,6 +24,12 @@ public class Book extends BaseEntity {
     @Column(nullable = false)
     private String description;
 
+    @Column(nullable = true)
+    private Long salePrice;
+
+    @Column(nullable = true)
+    private Long rentPrice;
+
     @OneToMany(mappedBy = "book")
     private List<BookGenre> bookGenres;
 

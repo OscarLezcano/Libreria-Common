@@ -22,4 +22,6 @@ public class Stock extends BaseEntity {
     @Column(nullable = false)
     private int quantity;
 
+    private Long costPrice;
+
 }

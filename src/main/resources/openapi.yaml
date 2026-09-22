@@ -96,6 +96,12 @@ components:
           type: string
         description:
           type: string
+        salePrice:
+          type: integer
+          format: int64
+        rentPrice:
+          type: integer
+          format: int64
         genreIds:
           type: array
           items:
@@ -233,6 +239,20 @@ components:
         saleId:
           type: integer
           format: int64
+    StockDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        bookId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+        costPrice:
+          type: integer
+          format: int64
     SaleCouponTemplateDto:
       type: object
       properties:
@@ -286,8 +306,6 @@ components:
         userId:
           type: integer
           format: int64
-        status:
-          $ref: '#/components/schemas/SalesStatus'
         totalPrice:
           type: integer
         createdAt:
