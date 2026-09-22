@@ -28,6 +28,9 @@ public class Book extends BaseEntity {
 
     private int stock;
 
+    @Column(nullable = false)
+    private long salePrice;
+
     @ManyToMany
     @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
