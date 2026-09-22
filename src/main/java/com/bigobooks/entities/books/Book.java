@@ -37,6 +37,6 @@ public class Book extends BaseEntity {
     private List<Author> authors;
 
     @OneToMany(mappedBy = "book")
-    private List<BookCollectionDetail> collectionDetails;
+    private List<Wishlist> wishlists;
 
 }

@@ -3,14 +3,12 @@ package com.bigobooks.entities.auth;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.books.Book;
+import com.bigobooks.entities.books.Wishlist;
 import com.bigobooks.entities.sales.Sale;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
@@ -40,7 +38,6 @@ public class UserAccount extends BaseEntity {
     @OneToMany(mappedBy = "userAccount")
     private List<Sale> sales;
 
-    @ManyToMany
-    @JoinTable(name = "user_wishlist", joinColumns = @JoinColumn(name = "user_id", nullable = true), inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<Book> wishlist;
+    @OneToMany(mappedBy = "userAccount")
+    private List<Wishlist> wishlists;
 }

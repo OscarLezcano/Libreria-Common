@@ -20,10 +20,30 @@ components:
         roleId:
           type: integer
           format: int64
-        wishlist:
+        wishlists:
           type: array
           items:
-            $ref: '#/components/schemas/BookDto'
+            $ref: '#/components/schemas/WishlistDto'
+    WishlistDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        bookId:
+          type: integer
+          format: int64
+        priceAtAdd:
+          type: integer
+          format: int64
+        notify:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
     RoleDto:
       type: object
       properties:
