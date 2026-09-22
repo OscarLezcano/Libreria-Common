@@ -22,6 +22,11 @@ public class Purchase extends BaseEntity {
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
+    /**
+     * Estado del pedido completo. El Lot no se abre acá: se abre por cada
+     * PurchaseDetail que pasa a RECEIVED, porque books identifica el lote
+     * con purchaseDetailId.
+     */
     @Enumerated(EnumType.STRING)
     private PurchaseEnum status;
 

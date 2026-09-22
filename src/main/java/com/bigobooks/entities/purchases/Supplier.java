@@ -18,6 +18,14 @@ public class Supplier extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
+    /**
+     * RUC (Registro Único de Contribuyentes), el identificador fiscal en Paraguay.
+     * Con dígito verificador. Ej: 80012345-6
+     */
+    @Column(nullable = false, unique = true, length = 12)
+    private String ruc;
+
+    /** Teléfono local. Ej: 0981123456 o 021123456 */
     private String phone;
 
     @Column(unique = true)

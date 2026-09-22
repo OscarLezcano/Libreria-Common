@@ -171,8 +171,13 @@ components:
           format: date-time
         name:
           type: string
+        ruc:
+          type: string
+          maxLength: 12
+          description: RUC (Registro Único de Contribuyentes), identificador fiscal de Paraguay. Con dígito verificador. Ej. 80012345-6
         phone:
           type: string
+          description: Teléfono local. Ej. 0981123456 o 021123456
         email:
           type: string
         address:
@@ -220,14 +225,26 @@ components:
         quantity:
           type: integer
           format: int32
+          description: Cantidad pedida. No es la que entra a stock.
         unitCost:
           type: integer
           format: int64
         subtotal:
           type: integer
           format: int64
+          description: quantity * unitCost. Lo pedido, no lo recibido.
+        receivedQuantity:
+          type: integer
+          format: int32
+          description: Unidades que realmente llegaron. Puede ser menor que quantity.
+        receivedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Última recepción de esta línea. Null hasta que llega algo.
         status:
           $ref: '#/components/schemas/PurchaseEnum'
+          description: RECEIVED cierra la línea y es el evento que abre el Lot en books.
     PurchaseEnum:
       type: string
       enum:

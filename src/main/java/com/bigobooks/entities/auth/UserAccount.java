@@ -30,6 +30,11 @@ public class UserAccount extends BaseEntity {
     @Column(nullable = false)
     private String passwordHash;
 
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    private String address;
+
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
