@@ -8,15 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Respuesta de paginación genérica.
- *
- * <p>
- * Vive en la librería compartida {@code bigobooks} para que todos los
- * microservicios reutilicen el mismo contrato de paginación sin duplicar DTOs.
- *
- * @param <T> tipo de los elementos de la página
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
