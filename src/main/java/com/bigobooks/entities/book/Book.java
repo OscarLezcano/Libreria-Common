@@ -13,7 +13,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import com.bigobooks.entities.auth.UserAccount;
-import com.bigobooks.entities.promotions.Promotion;
 
 @Entity
 @Getter
@@ -38,7 +37,4 @@ public class Book extends BaseEntity {
 
     @ManyToMany(mappedBy = "wishlist")
     private List<UserAccount> wishlistedBy;
-
-    @ManyToMany(mappedBy = "books")
-    private List<Promotion> promotions;
 }

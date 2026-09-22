@@ -26,4 +26,5 @@ public class Sale extends BaseEntity {
 
     @OneToMany(mappedBy = "sale")
     private List<SaleDetail> saleDetails;
+
 }
