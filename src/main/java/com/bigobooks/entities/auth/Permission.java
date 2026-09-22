@@ -13,14 +13,13 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Role extends BaseEntity {
+public class Permission extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    private List<UserAccount> userAccounts;
+    private String description;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "permission")
     private List<RolePermission> rolePermissions;
 }

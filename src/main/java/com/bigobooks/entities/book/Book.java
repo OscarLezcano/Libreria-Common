@@ -3,17 +3,13 @@ package com.bigobooks.entities.book;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
+import com.bigobooks.entities.auth.WishlistItem;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
-
-import com.bigobooks.entities.auth.UserAccount;
-import com.bigobooks.entities.promotions.Promotion;
 
 @Entity
 @Getter
@@ -28,17 +24,15 @@ public class Book extends BaseEntity {
     @Column(nullable = false)
     private String description;
 
-    @ManyToMany
-    @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    private List<Genre> genres;
+    @OneToMany(mappedBy = "book")
+    private List<BookGenre> bookGenres;
 
-    @ManyToMany
-    @JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private List<Author> authors;
+    @OneToMany(mappedBy = "book")
+    private List<BookAuthor> bookAuthors;
 
-    @ManyToMany(mappedBy = "wishlist")
-    private List<UserAccount> wishlistedBy;
+    @OneToMany(mappedBy = "book")
+    private List<WishlistItem> wishlistItems;
 
-    @ManyToMany(mappedBy = "books")
-    private List<Promotion> promotions;
+    @OneToMany(mappedBy = "book")
+    private List<BookPromotion> bookPromotions;
 }

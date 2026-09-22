@@ -1,16 +1,13 @@
-package com.bigobooks.entities.promotions;
+package com.bigobooks.entities.book;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.book.Book;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,12 +29,6 @@ public class Promotion extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime endDate;
 
-    @ManyToMany
-    @JoinTable(name = "book_promotion", joinColumns = @JoinColumn(name = "promotion_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<Book> books;
-
-    public boolean isActive() {
-        LocalDateTime now = LocalDateTime.now();
-        return !now.isBefore(startDate) && !now.isAfter(endDate);
-    }
+    @OneToMany(mappedBy = "promotion")
+    private List<BookPromotion> bookPromotions;
 }

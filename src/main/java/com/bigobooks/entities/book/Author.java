@@ -6,7 +6,7 @@ import com.bigobooks.entities.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +17,6 @@ public class Author extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "authors")
-    private List<Book> books;
+    @OneToMany(mappedBy = "author")
+    private List<BookAuthor> bookAuthors;
 }

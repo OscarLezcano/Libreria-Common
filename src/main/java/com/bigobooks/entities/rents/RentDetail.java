@@ -1,6 +1,7 @@
 package com.bigobooks.entities.rents;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
 import com.bigobooks.entities.book.Book;
@@ -9,6 +10,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,7 +34,6 @@ public class RentDetail extends BaseEntity {
     @JoinColumn(name = "rent_id")
     private Rent rent;
 
-    public boolean isActive() {
-        return returnDate.isAfter(LocalDate.now());
-    }
+    @OneToMany(mappedBy = "rentDetail")
+    private List<RentExtension> extensions;
 }
