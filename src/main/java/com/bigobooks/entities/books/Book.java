@@ -1,7 +1,7 @@
 package com.bigobooks.entities.books;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+// import java.math.BigDecimal;
+// import java.math.RoundingMode;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
@@ -45,23 +45,25 @@ public class Book extends BaseEntity {
     @OneToMany(mappedBy = "book")
     private List<Lot> lots;
 
-    public long salePriceFor(long unitCost) {
-        return BigDecimal.valueOf(unitCost)
-                .multiply(BigDecimal.valueOf(100L + profitMargin))
-                .divide(BigDecimal.valueOf(100), 0, RoundingMode.HALF_UP)
-                .longValue();
-    }
+    // Esto deberia estar en un el servicio manito
 
-    public Lot openLot(Long purchaseDetailId, long unitCost, int quantity) {
-        Lot lot = new Lot();
-        lot.setBook(this);
-        lot.setPurchaseDetailId(purchaseDetailId);
-        lot.setUnitCost(unitCost);
-        lot.setMarginApplied(profitMargin);
-        lot.setSalePrice(salePriceFor(unitCost));
-        lot.setQuantityReceived(quantity);
-        lot.setQuantityRemaining(quantity);
-        return lot;
-    }
+    // public long salePriceFor(long unitCost) {
+    // return BigDecimal.valueOf(unitCost)
+    // .multiply(BigDecimal.valueOf(100L + profitMargin))
+    // .divide(BigDecimal.valueOf(100), 0, RoundingMode.HALF_UP)
+    // .longValue();
+    // }
+
+    // public Lot openLot(Long purchaseDetailId, long unitCost, int quantity) {
+    // Lot lot = new Lot();
+    // lot.setBook(this);
+    // lot.setPurchaseDetailId(purchaseDetailId);
+    // lot.setUnitCost(unitCost);
+    // lot.setMarginApplied(profitMargin);
+    // lot.setSalePrice(salePriceFor(unitCost));
+    // lot.setQuantityReceived(quantity);
+    // lot.setQuantityRemaining(quantity);
+    // return lot;
+    // }
 
 }
