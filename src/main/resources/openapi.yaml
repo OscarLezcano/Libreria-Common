@@ -74,6 +74,37 @@ components:
           items:
             type: integer
             format: int64
+        profitMargin:
+          type: integer
+          format: int32
+          description: Margin over cost, in percent. 30 means salePrice = unitCost * 1.30
+    LotDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        bookId:
+          type: integer
+          format: int64
+        purchaseDetailId:
+          type: integer
+          format: int64
+        unitCost:
+          type: integer
+          format: int64
+        marginApplied:
+          type: integer
+          format: int32
+        salePrice:
+          type: integer
+          format: int64
+        quantityReceived:
+          type: integer
+          format: int32
+        quantityRemaining:
+          type: integer
+          format: int32
     GenreDto:
       type: object
       properties:

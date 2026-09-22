@@ -1,8 +1,8 @@
 package com.bigobooks.entities.purchases;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.books.Book;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,13 +20,12 @@ public class PurchaseDetail extends BaseEntity {
     @JoinColumn(name = "purchase_id")
     private Purchase purchase;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
+    @Column(name = "book_id", nullable = false)
+    private Long bookId;
 
     private int quantity;
 
-    private long unitPrice;
+    private long unitCost;
 
     private long subtotal;
 
