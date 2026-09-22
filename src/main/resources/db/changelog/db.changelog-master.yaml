@@ -119,12 +119,6 @@ databaseChangeLog:
         - column:
             constraints:
               nullable: false
-            name: stock
-            type: INTEGER
-            defaultValueNumeric: 0
-        - column:
-            constraints:
-              nullable: false
             name: description
             type: VARCHAR(255)
         - column:
@@ -846,5 +840,65 @@ databaseChangeLog:
         onUpdate: NO ACTION
         referencedColumnNames: id
         referencedTableName: promotion
+        validate: true
+- changeSet:
+    id: 1789068311131-46
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: stock_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: quantity
+            type: INTEGER
+        - column:
+            name: book_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        tableName: stock
+- changeSet:
+    id: 1789068311131-47
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: stock_seq
+        startValue: 1
+- changeSet:
+    id: 1789068311131-48
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: stock
+        constraintName: fkstockbook
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
         validate: true
 

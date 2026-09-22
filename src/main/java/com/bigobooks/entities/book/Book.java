@@ -24,9 +24,6 @@ public class Book extends BaseEntity {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private int stock;
-
     @OneToMany(mappedBy = "book")
     private List<BookGenre> bookGenres;
 
