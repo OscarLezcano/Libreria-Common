@@ -31,8 +31,4 @@ public class RentDetail extends BaseEntity {
     @ManyToOne()
     @JoinColumn(name = "rent_id")
     private Rent rent;
-
-    public boolean isActive() {
-        return returnDate.isAfter(LocalDate.now());
-    }
 }

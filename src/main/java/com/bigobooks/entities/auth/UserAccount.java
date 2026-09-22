@@ -43,8 +43,4 @@ public class UserAccount extends BaseEntity {
     @ManyToMany
     @JoinTable(name = "user_wishlist", joinColumns = @JoinColumn(name = "user_id", nullable = true), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> wishlist;
-
-    public String getFullName() {
-        return name + " " + lastName;
-    }
 }

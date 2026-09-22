@@ -35,9 +35,4 @@ public class Promotion extends BaseEntity {
     @ManyToMany
     @JoinTable(name = "book_promotion", joinColumns = @JoinColumn(name = "promotion_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books;
-
-    public boolean isActive() {
-        LocalDateTime now = LocalDateTime.now();
-        return !now.isBefore(startDate) && !now.isAfter(endDate);
-    }
 }
