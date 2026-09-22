@@ -1,4 +1,4 @@
-package com.bigobooks.entities.book;
+package com.bigobooks.entities.books;
 
 import java.util.List;
 
@@ -6,14 +6,12 @@ import com.bigobooks.entities.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
-
-import com.bigobooks.entities.auth.UserAccount;
-import com.bigobooks.entities.promotions.Promotion;
 
 @Entity
 @Getter
@@ -28,6 +26,8 @@ public class Book extends BaseEntity {
     @Column(nullable = false)
     private String description;
 
+    private int stock;
+
     @ManyToMany
     @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
@@ -36,9 +36,7 @@ public class Book extends BaseEntity {
     @JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Author> authors;
 
-    @ManyToMany(mappedBy = "wishlist")
-    private List<UserAccount> wishlistedBy;
+    @OneToMany(mappedBy = "book")
+    private List<BookCollectionDetail> collectionDetails;
 
-    @ManyToMany(mappedBy = "books")
-    private List<Promotion> promotions;
 }

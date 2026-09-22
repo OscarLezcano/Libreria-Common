@@ -1,4 +1,4 @@
-package com.bigobooks.entities.book;
+package com.bigobooks.entities.books;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Author extends BaseEntity {
+public class Genre extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(mappedBy = "genres")
     private List<Book> books;
 }

@@ -3,7 +3,7 @@ package com.bigobooks.entities.auth;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.book.Book;
+import com.bigobooks.entities.books.Book;
 import com.bigobooks.entities.sales.Sale;
 
 import jakarta.persistence.Column;

@@ -1,7 +1,7 @@
 package com.bigobooks.entities.sales;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.book.Book;
+import com.bigobooks.entities.books.Book;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -25,5 +25,9 @@ public class SaleDetail extends BaseEntity {
     @ManyToOne()
     @JoinColumn(name = "sales_id")
     private Sale sale;
+
+    @ManyToOne
+    @JoinColumn(name = "promotion_id")
+    private Promotion promotion;
 
 }
