@@ -157,6 +157,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- Clasificador para que el jar "delgado" (con las clases,
+						entidades y repositorios en la raiz) sea el artefacto que
+						otros microservicios usan como dependencia, y el jar
+						ejecutable se publique aparte como bigobooks-*-exec.jar -->
+					<classifier>exec</classifier>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
