@@ -3,11 +3,11 @@ package com.bigobooks.entities.sales;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.auth.UserAccount;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,12 +17,15 @@ import lombok.Setter;
 @Setter
 public class Sale extends BaseEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = true)
-    private UserAccount userAccount;
-    // private SalesStatus status; // Deber ser un enum, lo hare mas tarde
+    private Long userId;
+    @Enumerated(EnumType.STRING)
+    private SalesStatus status = SalesStatus.PENDING;
 
+    private int subTotal;
+    private int discountAmountl;
     private int totalPrice;
+    @Column(nullable = true)
+    private int shippingFee;
 
     @OneToMany(mappedBy = "sale")
     private List<SaleDetail> saleDetails;

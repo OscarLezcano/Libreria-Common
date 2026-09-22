@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
 import com.bigobooks.entities.books.Wishlist;
-import com.bigobooks.entities.sales.Sale;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,9 +33,6 @@ public class UserAccount extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
-
-    @OneToMany(mappedBy = "userAccount")
-    private List<Sale> sales;
 
     @OneToMany(mappedBy = "userAccount")
     private List<Wishlist> wishlists;

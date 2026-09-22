@@ -1,7 +1,6 @@
 package com.bigobooks.entities.sales;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.books.Book;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -14,13 +13,13 @@ import lombok.Setter;
 @Setter
 public class SaleDetail extends BaseEntity {
 
-    @ManyToOne()
-    @JoinColumn(name = "book_id")
-    private Book book;
+    private Long bookId;
 
     private int quantity;
 
-    private long price;
+    private long unitPrice;
+
+    private long unitDiscount;
 
     @ManyToOne()
     @JoinColumn(name = "sales_id")

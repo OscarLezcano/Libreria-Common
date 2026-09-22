@@ -19,9 +19,17 @@ public class Promotion extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String title;
 
-    private String description;
+    private String code;
 
-    private int discount;
+    private int discountPercentage;
+
+    private int minimumPurchaseAmount;
+
+    private int maxDiscountAmount;
+
+    private Integer globalUsageLimit; // Límite total (ej: Primeros 100 usuarios)
+
+    private Integer currentUsageCount = 0; // Contador de usos acumulados
 
     @Column(nullable = false)
     private LocalDateTime startDate;
