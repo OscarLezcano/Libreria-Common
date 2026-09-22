@@ -6,17 +6,36 @@ info:
 paths: {}
 components:
   schemas:
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        userAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserAccountDto'
     UserAccountDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        email:
-          type: string
         createdAt:
           type: string
           format: date-time
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
         roleId:
           type: integer
           format: int64
@@ -24,12 +43,82 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WishlistDto'
+    AuthorDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookDto'
+    GenreDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookDto'
+    BookDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        coverUrl:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        profitMargin:
+          type: integer
+          format: int32
+          description: Margin over cost, in percent. 30 means salePrice = unitCost * 1.30
+        genreIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        authorIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        wishlists:
+          type: array
+          items:
+            $ref: '#/components/schemas/WishlistDto'
+        lots:
+          type: array
+          items:
+            $ref: '#/components/schemas/LotDto'
     WishlistDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
+        createdAt:
+          type: string
+          format: date-time
         userId:
           type: integer
           format: int64
@@ -41,49 +130,15 @@ components:
           format: int64
         notify:
           type: boolean
-        createdAt:
-          type: string
-          format: date-time
-    RoleDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-    BookDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        coverUrl:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        genreIds:
-          type: array
-          items:
-            type: integer
-            format: int64
-        authorIds:
-          type: array
-          items:
-            type: integer
-            format: int64
-        profitMargin:
-          type: integer
-          format: int32
-          description: Margin over cost, in percent. 30 means salePrice = unitCost * 1.30
     LotDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
+        createdAt:
+          type: string
+          format: date-time
         bookId:
           type: integer
           format: int64
@@ -105,36 +160,155 @@ components:
         quantityRemaining:
           type: integer
           format: int32
-    GenreDto:
+    SupplierDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
+        createdAt:
+          type: string
+          format: date-time
         name:
           type: string
-    AuthorDto:
+        phone:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        purchases:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseDto'
+    PurchaseDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        name:
+        createdAt:
           type: string
+          format: date-time
+        supplierId:
+          type: integer
+          format: int64
+        status:
+          $ref: '#/components/schemas/PurchaseEnum'
+        totalPrice:
+          type: integer
+          format: int64
+        purchaseDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseDetailDto'
+    PurchaseDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        purchaseId:
+          type: integer
+          format: int64
+        bookId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+        unitCost:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
+        status:
+          $ref: '#/components/schemas/PurchaseEnum'
+    PurchaseEnum:
+      type: string
+      enum:
+        - PENDING
+        - RECEIVED
+        - CANCELLED
+    PromotionDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        title:
+          type: string
+        code:
+          type: string
+        discountPercentage:
+          type: integer
+          format: int32
+        currentUsageCount:
+          type: integer
+          format: int32
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        eligibleBooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionBookDto'
+        saleDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleDetailDto'
+    PromotionBookDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        promotionId:
+          type: integer
+          format: int64
+        bookId:
+          type: integer
+          format: int64
     SaleDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
+        createdAt:
+          type: string
+          format: date-time
         userId:
+          type: integer
+          format: int64
+        status:
+          $ref: '#/components/schemas/SalesStatus'
+        subTotal:
+          type: integer
+          format: int64
+        totalDiscount:
           type: integer
           format: int64
         totalPrice:
           type: integer
-        createdAt:
-          type: string
-          format: date-time
+          format: int64
+        shippingFee:
+          type: integer
+          format: int64
+          nullable: true
         saleDetails:
           type: array
           items:
@@ -145,14 +319,32 @@ components:
         id:
           type: integer
           format: int64
+        createdAt:
+          type: string
+          format: date-time
         bookId:
           type: integer
           format: int64
         quantity:
           type: integer
-        price:
+          format: int32
+        unitPrice:
           type: integer
           format: int64
+        discountAmount:
+          type: integer
+          format: int64
+        bookTitle:
+          type: string
         saleId:
           type: integer
           format: int64
+        promotionId:
+          type: integer
+          format: int64
+    SalesStatus:
+      type: string
+      enum:
+        - PENDING
+        - COMPLETED
+        - CANCELLED
