@@ -43,8 +43,6 @@ public class Shipment extends BaseEntity {
 
     private String city;
 
-    private String referencePoint; // Por ejemplo: En una casa de porton verde
-
     // AQUI OTROS DATOS VARIOS
 
     private String trackingNumber; // Numero de traqueo dado por la companhia
