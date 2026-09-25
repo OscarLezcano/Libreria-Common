@@ -29,9 +29,31 @@ public class Shipment extends BaseEntity {
 
     private Long approvedById; // El id del usuario que aprobo esto
 
+    // DATOS DEL CLIENTE QUE PIDIO EL PRODUCTO REGISTRADO EN EL SISTEMA
+
     private Long customerId; // EL id del usuario cliente que pidio el producto
 
     private String customerName; // Nombre del cliente que pidio esto
+
+    private String customerDocument; // Documento del cliente
+
+    private String customePhone; // Numero de telefono del personaje que recibira el paquete
+
+    // DATOS DE LA PERSONA QUE RECIVIO (PUEDE SER EL MISMO CLIENTE COMO PUEDE SER
+    // OTRA PERSONA)
+
+    private String recipientName;
+    private String recipientDocument;
+
+    // DATOS DE DIRECCION
+
+    private String department;
+
+    private String city;
+
+    private String referencePoint; // Por ejemplo: En una casa de porton verde
+
+    // AQUI OTROS DATOS VARIOS
 
     private String trackingNumber; // Numero de traqueo dado por la companhia
 
@@ -53,16 +75,6 @@ public class Shipment extends BaseEntity {
 
     // Si la entrega falla se registra en esta tabla una nota de porque fallo
     private String failureReason; // Ej: direccion incorrecta, cliente asuente, etc
-
-    // DATOS DE DIRECCION
-
-    private String department;
-
-    private String city;
-
-    private String referencePoint; // Por ejemplo: En una casa de porton verde
-
-    private String recipientPhone; // Numero de telefono del personaje que recibira el paquete
 
     @OneToMany(mappedBy = "shipment")
     private List<ShipmentDetail> shipmentDetails;
