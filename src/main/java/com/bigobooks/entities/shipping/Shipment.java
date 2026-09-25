@@ -35,8 +35,6 @@ public class Shipment extends BaseEntity {
 
     private String customerName; // Nombre del cliente que pidio esto
 
-    private String customerDocument; // Documento del cliente
-
     private String customePhone; // Numero de telefono del personaje que recibira el paquete
 
     // DATOS DE DIRECCION
