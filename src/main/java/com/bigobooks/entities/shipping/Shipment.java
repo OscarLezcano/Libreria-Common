@@ -39,12 +39,6 @@ public class Shipment extends BaseEntity {
 
     private String customePhone; // Numero de telefono del personaje que recibira el paquete
 
-    // DATOS DE LA PERSONA QUE RECIVIO (PUEDE SER EL MISMO CLIENTE COMO PUEDE SER
-    // OTRA PERSONA) son null hasta que el status pase a DELIVERED
-
-    private String recipientName;
-    private String recipientDocument;
-
     // DATOS DE DIRECCION
 
     private String department;
