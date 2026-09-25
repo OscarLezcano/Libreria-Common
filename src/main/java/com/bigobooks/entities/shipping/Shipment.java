@@ -1,9 +1,10 @@
 package com.bigobooks.entities.shipping;
 
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.orders.Order;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,15 +23,46 @@ public class Shipment extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "shipping_company_id", nullable = true)
-    private ShippingCompany shippingCompany;
+    private ShippingCompany shippingCompany; // Id del a companhia
 
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = true)
-    private Order order;
+    private Long orderId; // Id del pedido
+
+    private Long approvedById; // El id del usuario que aprobo esto
+
+    private Long customerId; // EL id del usuario cliente que pidio el producto
+
+    private String customerName; // Nombre del cliente que pidio esto
+
+    private String trackingNumber; // Numero de traqueo dado por la companhia
+
+    @Column(nullable = false)
+    private BigInteger shippingCost; // Costo del envio
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ShipmentStatus status;
+
+    // shippedAt (Fecha de despacho): Marca el momento exacto en que el paquete sale
+    // de tu librería y pasa a manos de la empresa de transporte.
+
+    // Cambio de estado: El envío pasa de PROCESSING a SHIPPED
+
+    private LocalDateTime shippedAt;
+
+    private LocalDateTime deliveredAt; // Tiempo en el que fue entregado
+
+    // Si la entrega falla se registra en esta tabla una nota de porque fallo
+    private String failureReason; // Ej: direccion incorrecta, cliente asuente, etc
+
+    // DATOS DE DIRECCION
+
+    private String department;
+
+    private String city;
+
+    private String referencePoint; // Por ejemplo: En una casa de porton verde
+
+    private String recipientPhone; // Numero de telefono del personaje que recibira el paquete
 
     @OneToMany(mappedBy = "shipment")
     private List<ShipmentDetail> shipmentDetails;

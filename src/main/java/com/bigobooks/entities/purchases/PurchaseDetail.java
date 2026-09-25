@@ -1,7 +1,6 @@
 package com.bigobooks.entities.purchases;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.book.Book;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -14,9 +13,9 @@ import lombok.Setter;
 @Setter
 public class PurchaseDetail extends BaseEntity {
 
-    @ManyToOne()
-    @JoinColumn(name = "book_id")
-    private Book book;
+    private Long bookId;
+
+    private String bookName;
 
     private int quantity;
 

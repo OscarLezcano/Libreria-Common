@@ -15,8 +15,14 @@ import lombok.Setter;
 @Setter
 public class ShippingCompany extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String ruc;
+
+    @Column(nullable = false)
+    private String mail;
 
     @OneToMany(mappedBy = "shippingCompany")
     private List<Shipment> shipments;
