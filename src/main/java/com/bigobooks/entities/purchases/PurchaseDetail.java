@@ -19,7 +19,7 @@ public class PurchaseDetail extends BaseEntity {
 
     private int quantity;
 
-    private long price;
+    private long unitCost;
 
     @ManyToOne()
     @JoinColumn(name = "purchase_id")

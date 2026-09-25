@@ -19,7 +19,9 @@ public class OrderDetail extends BaseEntity {
 
     private int quantity;
 
-    private long price;
+    private long unitPrice;
+
+    private long discount;
 
     @ManyToOne()
     @JoinColumn(name = "order_id")

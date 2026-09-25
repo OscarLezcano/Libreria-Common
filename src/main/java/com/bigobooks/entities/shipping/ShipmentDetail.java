@@ -17,7 +17,7 @@ public class ShipmentDetail extends BaseEntity {
 
     private String bookName;
 
-    private int quantity;
+    private int shippedQuantity;
 
     @ManyToOne()
     @JoinColumn(name = "shipment_id")
