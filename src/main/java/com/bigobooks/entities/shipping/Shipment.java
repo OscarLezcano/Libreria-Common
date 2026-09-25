@@ -1,6 +1,5 @@
 package com.bigobooks.entities.shipping;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,8 +46,8 @@ public class Shipment extends BaseEntity {
 
     private String trackingNumber; // Numero de traqueo dado por la companhia
 
-    @Column(nullable = false)
-    private BigInteger shippingCost; // Costo del envio
+    @Column(nullable = true) // Nulable porque nosotros no sabemos el precio hasta que ellos nos digas
+    private Integer shippingCost; // Costo del envio
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
