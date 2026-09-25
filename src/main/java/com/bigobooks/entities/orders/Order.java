@@ -1,4 +1,4 @@
-package com.bigobooks.entities.purchases;
+package com.bigobooks.entities.orders;
 
 import java.util.List;
 
@@ -17,18 +17,18 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Purchase extends BaseEntity {
-
-    @ManyToOne
-    @JoinColumn(name = "supplier_id", nullable = true)
-    private Supplier supplier;
+public class Order extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PurchaseStatus status;
+    private OrderStatus status;
 
     private int totalPrice;
 
-    @OneToMany(mappedBy = "purchase")
-    private List<PurchaseDetail> purchaseDetails;
+    @ManyToOne
+    @JoinColumn(name = "promotion_id", nullable = true)
+    private Promotion promotion;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetails;
 }

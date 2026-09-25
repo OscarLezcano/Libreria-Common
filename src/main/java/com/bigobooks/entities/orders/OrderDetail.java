@@ -1,4 +1,4 @@
-package com.bigobooks.entities.sales;
+package com.bigobooks.entities.orders;
 
 import com.bigobooks.entities.BaseEntity;
 import com.bigobooks.entities.book.Book;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class SaleDetail extends BaseEntity {
+public class OrderDetail extends BaseEntity {
 
     @ManyToOne()
     @JoinColumn(name = "book_id")
@@ -23,7 +23,6 @@ public class SaleDetail extends BaseEntity {
     private long price;
 
     @ManyToOne()
-    @JoinColumn(name = "sales_id")
-    private Sale sale;
-
+    @JoinColumn(name = "order_id")
+    private Order order;
 }
