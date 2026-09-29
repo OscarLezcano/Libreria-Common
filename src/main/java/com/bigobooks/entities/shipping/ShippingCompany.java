@@ -26,4 +26,7 @@ public class ShippingCompany extends BaseEntity {
 
     @OneToMany(mappedBy = "shippingCompany")
     private List<Shipment> shipments;
+
+    @OneToMany(mappedBy = "shippingCompany")
+    private List<ShippingRate> shippingRates;
 }

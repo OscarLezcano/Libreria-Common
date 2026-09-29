@@ -46,8 +46,7 @@ public class Shipment extends BaseEntity {
 
     private String trackingNumber; // Numero de traqueo dado por la companhia
 
-    @Column(nullable = true) // Nulable porque nosotros no sabemos el precio hasta que ellos nos digas
-    private Integer shippingCost; // Costo del envio
+    private int shippingCost; // Costo de envio esto es un snapshot
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
