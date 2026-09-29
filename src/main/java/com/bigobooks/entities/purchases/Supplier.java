@@ -18,6 +18,8 @@ public class Supplier extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
+    private String ruc;
+
     @OneToMany(mappedBy = "supplier")
     private List<Purchase> purchases;
 }

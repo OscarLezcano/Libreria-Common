@@ -29,6 +29,9 @@ public class Purchase extends BaseEntity {
 
     private int totalPrice;
 
+    // (ej: "001-001-00001234").
+    private String invoiceNumber;
+
     @OneToMany(mappedBy = "purchase")
     private List<PurchaseDetail> purchaseDetails;
 }
