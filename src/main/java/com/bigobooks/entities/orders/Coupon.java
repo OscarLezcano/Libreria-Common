@@ -23,6 +23,6 @@ public class Coupon extends BaseEntity {
 
     private LocalDateTime validUntil;
 
-    @OneToMany(mappedBy = "promotion")
+    @OneToMany(mappedBy = "coupon")
     private List<Order> orders;
 }
