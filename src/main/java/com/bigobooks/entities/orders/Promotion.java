@@ -7,8 +7,6 @@ import com.bigobooks.entities.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,10 +22,6 @@ public class Promotion extends BaseEntity {
     private int discountPercent;
 
     private LocalDateTime validUntil;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private PromotionStatus status;
 
     @OneToMany(mappedBy = "promotion")
     private List<Order> orders;
