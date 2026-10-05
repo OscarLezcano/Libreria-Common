@@ -1,0 +1,1232 @@
+databaseChangeLog:
+- changeSet:
+    id: 1791232352303-1
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: orders_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            name: bancard_number
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: discount_amount
+            type: BIGINT
+        - column:
+            name: invoice_number
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: status
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: subtotal
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: total_price
+            type: BIGINT
+        - column:
+            name: warehouse_id
+            type: BIGINT
+        - column:
+            name: coupon_id
+            type: BIGINT
+        tableName: orders
+- changeSet:
+    id: 1791232352303-2
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: purchase_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            name: invoice_number
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: status
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: total_price
+            type: INTEGER
+        - column:
+            name: warehouse_id
+            type: BIGINT
+        - column:
+            name: supplier_id
+            type: BIGINT
+        tableName: purchase
+- changeSet:
+    id: 1791232352303-3
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: permission_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        tableName: permission
+- changeSet:
+    id: 1791232352303-4
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: role_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        tableName: role
+- changeSet:
+    id: 1791232352303-5
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: coupon_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: code
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: discount_percent
+            type: INTEGER
+        - column:
+            name: valid_until
+            type: TIMESTAMP WITHOUT TIME ZONE
+        tableName: coupon
+- changeSet:
+    id: 1791232352303-6
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: supplier_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: ruc
+            type: VARCHAR(255)
+        tableName: supplier
+- changeSet:
+    id: 1791232352303-7
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: genre_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        tableName: genre
+- changeSet:
+    id: 1791232352303-8
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: warehouse_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: address
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: city
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: phone
+            type: VARCHAR(255)
+        tableName: warehouse
+- changeSet:
+    id: 1791232352303-9
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: book_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            name: cover_url
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: description
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: title
+            type: VARCHAR(255)
+        tableName: book
+- changeSet:
+    id: 1791232352303-10
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: user_account_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: city
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: email
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: last_name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: password_hash
+            type: VARCHAR(255)
+        - column:
+            name: warehouse_id
+            type: BIGINT
+        - column:
+            name: role_id
+            type: BIGINT
+        tableName: user_account
+- changeSet:
+    id: 1791232352303-11
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: author_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        tableName: author
+- changeSet:
+    id: 1791232352303-12
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: uk2ojme20jpga3r4r79tdso17gi
+        tableName: permission
+- changeSet:
+    id: 1791232352303-13
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: uk8sewwnpamngi6b1dwaa88askk
+        tableName: role
+- changeSet:
+    id: 1791232352303-14
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: code
+        constraintName: ukbg4p9ontpj7adq7yr71h93sdn
+        tableName: coupon
+- changeSet:
+    id: 1791232352303-15
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: ukc3fclhmodftxk4d0judiafwi3
+        tableName: supplier
+- changeSet:
+    id: 1791232352303-16
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: ukctffrbu4484ft8dlsa5vmqdka
+        tableName: genre
+- changeSet:
+    id: 1791232352303-17
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: ukdbmkeyi4co3vmnwnjxoocd4nh
+        tableName: warehouse
+- changeSet:
+    id: 1791232352303-18
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: title
+        constraintName: ukg0286ag1dlt4473st1ugemd0m
+        tableName: book
+- changeSet:
+    id: 1791232352303-19
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: email
+        constraintName: ukhl02wv5hym99ys465woijmfib
+        tableName: user_account
+- changeSet:
+    id: 1791232352303-20
+    author: cheemstos (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: ukor6k6jmywerxbme223c988bmg
+        tableName: author
+- changeSet:
+    id: 1791232352303-21
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: author_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-22
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: book_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-23
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: coupon_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-24
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: genre_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-25
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: order_detail_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-26
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: order_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-27
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: orders_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-28
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: permission_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-29
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: purchase_detail_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-30
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: purchase_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-31
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: role_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-32
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: stock_adjustment_details_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-33
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: stock_adjustments_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-34
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: stock_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-35
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: supplier_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-36
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: user_account_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-37
+    author: cheemstos (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 50
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: warehouse_seq
+        startValue: 1
+- changeSet:
+    id: 1791232352303-38
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: book_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: author_id
+            type: BIGINT
+        tableName: book_author
+- changeSet:
+    id: 1791232352303-39
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: book_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: genre_id
+            type: BIGINT
+        tableName: book_genre
+- changeSet:
+    id: 1791232352303-40
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: order_detail_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            name: book_id
+            type: BIGINT
+        - column:
+            name: book_name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: discount
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: quantity
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: unit_price
+            type: BIGINT
+        - column:
+            name: order_id
+            type: BIGINT
+        tableName: order_detail
+- changeSet:
+    id: 1791232352303-41
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: purchase_detail_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            name: book_id
+            type: BIGINT
+        - column:
+            name: book_name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: quantity
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: unit_cost
+            type: BIGINT
+        - column:
+            name: purchase_id
+            type: BIGINT
+        tableName: purchase_detail
+- changeSet:
+    id: 1791232352303-42
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: role_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: permission_id
+            type: BIGINT
+        tableName: role_permission
+- changeSet:
+    id: 1791232352303-43
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: stock_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            name: book_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: quantity
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: warehouse_id
+            type: BIGINT
+        tableName: stock
+- changeSet:
+    id: 1791232352303-44
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: stock_adjustment_details_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: book
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: book_name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: physical_quantity
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: system_quantity
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: stock_adjustment_id
+            type: BIGINT
+        tableName: stock_adjustment_details
+- changeSet:
+    id: 1791232352303-45
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: stock_adjustments_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: is_deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: note
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: warehouse_id
+            type: BIGINT
+        tableName: stock_adjustments
+- changeSet:
+    id: 1791232352303-46
+    author: cheemstos (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: user_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: book_id
+            type: BIGINT
+        tableName: user_wishlist
+- changeSet:
+    id: 1791232352303-47
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: user_wishlist
+        constraintName: fk2qmjbrb72qi7lwxfgjdptkkjp
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: user_account
+        validate: true
+- changeSet:
+    id: 1791232352303-48
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role_id
+        baseTableName: user_account
+        constraintName: fk4j8uoaeve853dcbl0tjd0yoq0
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: role
+        validate: true
+- changeSet:
+    id: 1791232352303-49
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: book_genre
+        constraintName: fk52evq6pdc5ypanf41bij5u218
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
+        validate: true
+- changeSet:
+    id: 1791232352303-50
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: purchase_id
+        baseTableName: purchase_detail
+        constraintName: fk65hoe4yy1817l2vm74msb8eq5
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: purchase
+        validate: true
+- changeSet:
+    id: 1791232352303-51
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: genre_id
+        baseTableName: book_genre
+        constraintName: fk8l6ops8exmjrlr89hmfow4mmo
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: genre
+        validate: true
+- changeSet:
+    id: 1791232352303-52
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: supplier_id
+        baseTableName: purchase
+        constraintName: fk8omm6fki86s9oqk0o9s6w43h5
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: supplier
+        validate: true
+- changeSet:
+    id: 1791232352303-53
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: coupon_id
+        baseTableName: orders
+        constraintName: fka5ei0aklq6wrjl8vrr7ied3bx
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: coupon
+        validate: true
+- changeSet:
+    id: 1791232352303-54
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role_id
+        baseTableName: role_permission
+        constraintName: fka6jx8n8xkesmjmv6jqug6bg68
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: role
+        validate: true
+- changeSet:
+    id: 1791232352303-55
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: author_id
+        baseTableName: book_author
+        constraintName: fkbjqhp85wjv8vpr0beygh6jsgo
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: author
+        validate: true
+- changeSet:
+    id: 1791232352303-56
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: permission_id
+        baseTableName: role_permission
+        constraintName: fkf8yllw1ecvwqy3ehyxawqa1qp
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: permission
+        validate: true
+- changeSet:
+    id: 1791232352303-57
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: user_wishlist
+        constraintName: fkff3e4hjuon9vbc35w8rr6ur88
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
+        validate: true
+- changeSet:
+    id: 1791232352303-58
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: book_author
+        constraintName: fkhwgu59n9o80xv75plf9ggj7xn
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: book
+        validate: true
+- changeSet:
+    id: 1791232352303-59
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: stock_adjustment_id
+        baseTableName: stock_adjustment_details
+        constraintName: fkjd0xv5sa3894xoh3u58x0v4er
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: stock_adjustments
+        validate: true
+- changeSet:
+    id: 1791232352303-60
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: warehouse_id
+        baseTableName: stock
+        constraintName: fkjq3xoxdl3pw243p9rnertn8q3
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: warehouse
+        validate: true
+- changeSet:
+    id: 1791232352303-61
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: warehouse_id
+        baseTableName: stock_adjustments
+        constraintName: fkmpvh5k0fxsboeuox7vo90xs1q
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: warehouse
+        validate: true
+- changeSet:
+    id: 1791232352303-62
+    author: cheemstos (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: order_id
+        baseTableName: order_detail
+        constraintName: fkrws2q0si6oyd6il8gqe2aennc
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: orders
+        validate: true
+
