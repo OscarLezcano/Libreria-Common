@@ -39,9 +39,9 @@ public class Order extends BaseEntity {
     @Column(nullable = false)
     private long subtotal;
 
-    // MONTO TOTAL DESCONTADO por la promotion, en guaranies.
+    // MONTO TOTAL DESCONTADO por la coupon, en guaranies.
     // 0 cuando el pedido no tiene promocion. Es el resultado de aplicar
-    // promotion.discountPercent sobre el subtotal, guardado como monto y no
+    // coupon.discountPercent sobre el subtotal, guardado como monto y no
     // como porcentaje para que el historico siga siendo valido si despues
     // editan o desactivan la promo.
 
@@ -49,8 +49,8 @@ public class Order extends BaseEntity {
     private long discountAmount;
 
     @ManyToOne
-    @JoinColumn(name = "promotion_id", nullable = true)
-    private Promotion promotion;
+    @JoinColumn(name = "coupon_id", nullable = true)
+    private Coupon coupon;
 
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;

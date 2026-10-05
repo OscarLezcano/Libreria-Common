@@ -14,7 +14,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Promotion extends BaseEntity {
+public class Coupon extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String code;
