@@ -19,6 +19,8 @@ import lombok.Setter;
 @Setter
 public class Purchase extends BaseEntity {
 
+    Long warehouseId;
+
     @ManyToOne
     @JoinColumn(name = "supplier_id", nullable = true)
     private Supplier supplier;

@@ -19,6 +19,8 @@ import lombok.Setter;
 @Setter
 public class Order extends BaseEntity {
 
+    Long warehouseId;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrderStatus status;
