@@ -6,6 +6,9 @@ import com.bigobooks.entities.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,4 +23,8 @@ public class Role extends BaseEntity {
 
     @OneToMany(mappedBy = "role")
     private List<UserAccount> userAccounts;
+
+    @ManyToMany
+    @JoinTable(name = "role_permission", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
+    private List<Permission> permissions;
 }
