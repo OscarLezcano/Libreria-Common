@@ -48,6 +48,10 @@ public class Order extends BaseEntity {
     @Column(nullable = false)
     private long discountAmount;
 
+    // Datos fake para simular bancard
+    private String bancardNumber;
+    private String invoiceNumber;
+
     @ManyToOne
     @JoinColumn(name = "coupon_id", nullable = true)
     private Coupon coupon;
