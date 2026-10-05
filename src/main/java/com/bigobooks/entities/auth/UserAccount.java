@@ -33,7 +33,10 @@ public class UserAccount extends BaseEntity {
     private String passwordHash;
 
     @Column(nullable = false)
-    private String city;
+    private String city; // Asuncion
+
+    @Column(nullable = true)
+    private Long warehouseId;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
