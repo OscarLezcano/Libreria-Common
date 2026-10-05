@@ -12,10 +12,17 @@ components:
         id:
           type: integer
           format: int64
+        name:
+          type: string
+        lastName:
+          type: string
         email:
           type: string
         city:
           type: string
+        warehouseId:
+          type: integer
+          format: int64
         createdAt:
           type: string
           format: date-time
@@ -34,6 +41,9 @@ components:
           format: int64
         name:
           type: string
+        createdAt:
+          type: string
+          format: date-time
         permissions:
           type: array
           items:
@@ -46,6 +56,9 @@ components:
           format: int64
         name:
           type: string
+        createdAt:
+          type: string
+          format: date-time
     RegisterDto:
       type: object
       properties:
@@ -59,6 +72,9 @@ components:
           type: string
         city:
           type: string
+        warehouseId:
+          type: integer
+          format: int64
     LoginDto:
       type: object
       properties:
@@ -78,6 +94,9 @@ components:
           type: string
         description:
           type: string
+        createdAt:
+          type: string
+          format: date-time
         genreIds:
           type: array
           items:
@@ -96,6 +115,9 @@ components:
           format: int64
         name:
           type: string
+        createdAt:
+          type: string
+          format: date-time
     AuthorDto:
       type: object
       properties:
@@ -104,25 +126,49 @@ components:
           format: int64
         name:
           type: string
-    SaleDto:
+        createdAt:
+          type: string
+          format: date-time
+    OrderDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        userId:
+        warehouseId:
           type: integer
           format: int64
+        status:
+          type: string
+          enum:
+            - PENDING
+            - PAID
+            - REFUNDED
+            - CANCELLED
         totalPrice:
           type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
+        discountAmount:
+          type: integer
+          format: int64
+        bancardNumber:
+          type: string
+        invoiceNumber:
+          type: string
         createdAt:
           type: string
           format: date-time
-        saleDetails:
+        couponId:
+          type: integer
+          format: int64
+        orderDetails:
           type: array
           items:
-            $ref: '#/components/schemas/SaleDetailDto'
-    SaleDetailDto:
+            $ref: '#/components/schemas/OrderDetailDto'
+    OrderDetailDto:
       type: object
       properties:
         id:
@@ -131,33 +177,81 @@ components:
         bookId:
           type: integer
           format: int64
+        bookName:
+          type: string
         quantity:
           type: integer
-        price:
+        unitPrice:
           type: integer
           format: int64
-        saleId:
+        discount:
           type: integer
           format: int64
-    RentDto:
+        createdAt:
+          type: string
+          format: date-time
+        orderId:
+          type: integer
+          format: int64
+    CouponDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        userId:
+        code:
+          type: string
+        discountPercent:
           type: integer
-          format: int64
-        totalPrice:
-          type: integer
+        validUntil:
+          type: string
+          format: date-time
         createdAt:
           type: string
           format: date-time
-        rentDetails:
+    SupplierDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        ruc:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    PurchaseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        warehouseId:
+          type: integer
+          format: int64
+        supplierId:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+            - PENDING
+            - RECEIVED
+            - CANCELLED
+        totalPrice:
+          type: integer
+        invoiceNumber:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        purchaseDetails:
           type: array
           items:
-            $ref: '#/components/schemas/RentDetailDto'
-    RentDetailDto:
+            $ref: '#/components/schemas/PurchaseDetailDto'
+    PurchaseDetailDto:
       type: object
       properties:
         id:
@@ -166,40 +260,19 @@ components:
         bookId:
           type: integer
           format: int64
-        price:
+        bookName:
+          type: string
+        quantity:
+          type: integer
+        unitCost:
           type: integer
           format: int64
-        monthsRented:
-          type: integer
-        returnDate:
-          type: string
-          format: date
-        rentId:
-          type: integer
-          format: int64
-    PromotionDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        title:
-          type: string
-        description:
-          type: string
-        discount:
-          type: integer
-        startDate:
+        createdAt:
           type: string
           format: date-time
-        endDate:
-          type: string
-          format: date-time
-        bookIds:
-          type: array
-          items:
-            type: integer
-            format: int64
+        purchaseId:
+          type: integer
+          format: int64
     WarehouseDto:
       type: object
       properties:
@@ -214,8 +287,9 @@ components:
           type: string
         phone:
           type: string
-        capacity:
-          type: integer
+        createdAt:
+          type: string
+          format: date-time
         stocks:
           type: array
           items:
@@ -229,40 +303,50 @@ components:
         bookId:
           type: integer
           format: int64
-        bookName:
+        quantity:
+          type: integer
+        createdAt:
           type: string
+          format: date-time
         warehouseId:
           type: integer
           format: int64
-        quantity:
-          type: integer
-        minStock:
-          type: integer
-        movements:
-          type: array
-          items:
-            $ref: '#/components/schemas/StockMovementDto'
-    StockMovementDto:
+    StockAdjustmentDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        bookId:
+        note:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        warehouseId:
+          type: integer
+          format: int64
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockAdjustmentDetailDto'
+    StockAdjustmentDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        book:
           type: integer
           format: int64
         bookName:
           type: string
-        quantity:
+        systemQuantity:
           type: integer
-        movementType:
+        physicalQuantity:
+          type: integer
+        createdAt:
           type: string
-          enum:
-            - PURCHASE
-            - SALE
-            - ADJUSTMENT
-        referenceId:
-          type: string
-        stockId:
+          format: date-time
+        stockAdjustmentId:
           type: integer
           format: int64
