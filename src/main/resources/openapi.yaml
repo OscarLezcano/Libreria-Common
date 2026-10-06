@@ -94,6 +94,10 @@ components:
           type: string
         description:
           type: string
+        price:
+          type: integer
+          format: int64
+          description: Precio de venta en guaranies (null si aun no tiene precio)
         createdAt:
           type: string
           format: date-time
@@ -138,6 +142,10 @@ components:
         warehouseId:
           type: integer
           format: int64
+        userId:
+          type: integer
+          format: int64
+          description: Usuario que realizo la venta (null si no tiene usuario)
         status:
           type: string
           enum:

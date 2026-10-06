@@ -3,6 +3,7 @@ package com.bigobooks.entities.orders;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
+import com.bigobooks.entities.auth.UserAccount;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +23,11 @@ import lombok.Setter;
 public class Order extends BaseEntity {
 
     Long warehouseId;
+
+    // Usuario que realizo la venta (cliente).
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserAccount userAccount;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

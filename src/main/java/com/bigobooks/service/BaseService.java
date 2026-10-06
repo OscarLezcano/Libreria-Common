@@ -38,14 +38,4 @@ public abstract class BaseService<T extends BaseEntity, R extends BaseRepository
     protected void deleteById(Long id) {
         repository.deleteById(id);
     }
-
-    @Transactional(readOnly = true)
-    protected List<T> findDeleted() {
-        return repository.findDeleted();
-    }
-
-    @Transactional(readOnly = true)
-    protected List<T> findAllIncludingDeleted() {
-        return repository.findAllIncludingDeleted();
-    }
 }

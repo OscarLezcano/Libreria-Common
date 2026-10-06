@@ -27,6 +27,9 @@ public class Book extends BaseEntity {
     @Column(nullable = false)
     private String description;
 
+    // Precio de venta en guaranies. Null si el libro todavia no tiene precio.
+    private Long price;
+
     @ManyToMany
     @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
