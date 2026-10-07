@@ -290,17 +290,10 @@ components:
         createdAt:
           type: string
           format: date-time
-        stocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/StockDto'
     StockDto:
       type: object
       properties:
         id:
-          type: integer
-          format: int64
-        bookId:
           type: integer
           format: int64
         quantity:
@@ -308,9 +301,8 @@ components:
         createdAt:
           type: string
           format: date-time
-        warehouseId:
-          type: integer
-          format: int64
+        warehouse:
+          $ref: '#/components/schemas/WarehouseDto'
     StockAdjustmentDto:
       type: object
       properties:
@@ -322,9 +314,6 @@ components:
         createdAt:
           type: string
           format: date-time
-        warehouseId:
-          type: integer
-          format: int64
         details:
           type: array
           items:
@@ -347,6 +336,3 @@ components:
         createdAt:
           type: string
           format: date-time
-        stockAdjustmentId:
-          type: integer
-          format: int64
