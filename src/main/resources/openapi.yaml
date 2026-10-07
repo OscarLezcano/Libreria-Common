@@ -406,3 +406,87 @@ components:
           type: object
         pagination:
           $ref: '#/components/schemas/Pagination'
+    BookResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/BookDto'
+    BookListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    GenreResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/GenreDto'
+    GenreListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenreDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    AuthorResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AuthorDto'
+    AuthorListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    WarehouseResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WarehouseDto'
+    WarehouseListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarehouseDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StockResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StockDto'
+    StockListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StockAdjustmentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StockAdjustmentDto'
+    StockAdjustmentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockAdjustmentDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
