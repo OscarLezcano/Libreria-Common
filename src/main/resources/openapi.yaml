@@ -88,14 +88,9 @@ components:
           type: string
         password:
           type: string
-    BookDto:
+    BookRequestDto:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
-          example: 1
         coverUrl:
           type: string
           example: 'https://covers.example.com/9789876543210.jpg'
@@ -110,11 +105,6 @@ components:
           format: int64
           description: Precio de venta en guaranies (null si aun no tiene precio)
           example: 150000
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: '2026-01-15T10:30:00'
         genreIds:
           type: array
           items:
@@ -129,38 +119,63 @@ components:
             format: int64
           example:
             - 1
-    GenreDto:
+    BookDto:
+      allOf:
+        - $ref: '#/components/schemas/BookRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+    GenreRequestDto:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
-          example: 1
         name:
           type: string
           example: Fantasía
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: '2026-01-15T10:30:00'
-    AuthorDto:
+    GenreDto:
+      allOf:
+        - $ref: '#/components/schemas/GenreRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+    AuthorRequestDto:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
-          example: 1
         name:
           type: string
           example: Gabriel García Márquez
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: '2026-01-15T10:30:00'
+    AuthorDto:
+      allOf:
+        - $ref: '#/components/schemas/AuthorRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
     OrderDto:
       type: object
       properties:
@@ -321,14 +336,9 @@ components:
         purchaseId:
           type: integer
           format: int64
-    WarehouseDto:
+    WarehouseRequestDto:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
-          example: 1
         name:
           type: string
           example: Central Asunción
@@ -341,68 +351,60 @@ components:
         phone:
           type: string
           example: '+595 21 1234567'
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: '2026-01-15T10:30:00'
-    StockDto:
+    WarehouseDto:
+      allOf:
+        - $ref: '#/components/schemas/WarehouseRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+    StockRequestDto:
       type: object
+      required:
+        - quantity
+        - warehouseId
       properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
-          example: 1
         quantity:
           type: integer
           example: 25
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: '2026-01-15T10:30:00'
-        warehouse:
-          allOf:
-            - $ref: '#/components/schemas/WarehouseDto'
-          example:
-            id: 1
-            name: Central Asunción
-            city: Asunción
-    StockAdjustmentDto:
-      type: object
-      properties:
-        id:
+        warehouseId:
           type: integer
           format: int64
-          readOnly: true
+          description: Id del almacen donde esta el stock
           example: 1
-        note:
-          type: string
-          example: Conteo físico mensual
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: '2026-01-15T10:30:00'
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/StockAdjustmentDetailDto'
-          example:
-            - id: 1
-              book: 1
-              bookName: El Principito
-              systemQuantity: 24
-              physicalQuantity: 25
-    StockAdjustmentDetailDto:
+    StockDto:
+      allOf:
+        - $ref: '#/components/schemas/StockRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+            warehouse:
+              allOf:
+                - $ref: '#/components/schemas/WarehouseDto'
+              example:
+                id: 1
+                name: Central Asunción
+                city: Asunción
+    StockAdjustmentDetailRequestDto:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
-          example: 1
         book:
           type: integer
           format: int64
@@ -416,11 +418,55 @@ components:
         physicalQuantity:
           type: integer
           example: 25
-        createdAt:
+    StockAdjustmentDetailDto:
+      allOf:
+        - $ref: '#/components/schemas/StockAdjustmentDetailRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+    StockAdjustmentRequestDto:
+      type: object
+      properties:
+        note:
           type: string
-          format: date-time
-          readOnly: true
-          example: '2026-01-15T10:30:00'
+          example: Conteo físico mensual
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockAdjustmentDetailRequestDto'
+          example:
+            - book: 1
+              bookName: El Principito
+              systemQuantity: 24
+              physicalQuantity: 25
+    StockAdjustmentDto:
+      allOf:
+        - $ref: '#/components/schemas/StockAdjustmentRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+            details:
+              type: array
+              items:
+                $ref: '#/components/schemas/StockAdjustmentDetailDto'
     StockQuantityRequestDto:
       type: object
       required:
