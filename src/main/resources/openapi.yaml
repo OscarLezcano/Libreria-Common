@@ -88,51 +88,67 @@ components:
         id:
           type: integer
           format: int64
+          example: 1
         coverUrl:
           type: string
+          example: 'https://covers.example.com/9789876543210.jpg'
         title:
           type: string
+          example: El Principito
         description:
           type: string
+          example: Un aviador cae en el desierto del Sahara y conoce a un pequeño príncipe.
         price:
           type: integer
           format: int64
           description: Precio de venta en guaranies (null si aun no tiene precio)
+          example: 150000
         createdAt:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00'
         genreIds:
           type: array
           items:
             type: integer
             format: int64
+          example:
+            - 1
         authorIds:
           type: array
           items:
             type: integer
             format: int64
+          example:
+            - 1
     GenreDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
+          example: 1
         name:
           type: string
+          example: Fantasía
         createdAt:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00'
     AuthorDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
+          example: 1
         name:
           type: string
+          example: Gabriel García Márquez
         createdAt:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00'
     OrderDto:
       type: object
       properties:
@@ -287,74 +303,199 @@ components:
         id:
           type: integer
           format: int64
+          example: 1
         name:
           type: string
+          example: Central Asunción
         address:
           type: string
+          example: Av. España 1234
         city:
           type: string
+          example: Asunción
         phone:
           type: string
+          example: '+595 21 1234567'
         createdAt:
           type: string
           format: date-time
-        stocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/StockDto'
+          example: '2026-01-15T10:30:00'
     StockDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        bookId:
-          type: integer
-          format: int64
+          example: 1
         quantity:
           type: integer
+          example: 25
         createdAt:
           type: string
           format: date-time
-        warehouseId:
-          type: integer
-          format: int64
+          example: '2026-01-15T10:30:00'
+        warehouse:
+          allOf:
+            - $ref: '#/components/schemas/WarehouseDto'
+          example:
+            id: 1
+            name: Central Asunción
+            city: Asunción
     StockAdjustmentDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
+          example: 1
         note:
           type: string
+          example: Conteo físico mensual
         createdAt:
           type: string
           format: date-time
-        warehouseId:
-          type: integer
-          format: int64
+          example: '2026-01-15T10:30:00'
         details:
           type: array
           items:
             $ref: '#/components/schemas/StockAdjustmentDetailDto'
+          example:
+            - id: 1
+              book: 1
+              bookName: El Principito
+              systemQuantity: 24
+              physicalQuantity: 25
     StockAdjustmentDetailDto:
       type: object
       properties:
         id:
           type: integer
           format: int64
+          example: 1
         book:
           type: integer
           format: int64
+          example: 1
         bookName:
           type: string
+          example: El Principito
         systemQuantity:
           type: integer
+          example: 24
         physicalQuantity:
           type: integer
+          example: 25
         createdAt:
           type: string
           format: date-time
-        stockAdjustmentId:
+          example: '2026-01-15T10:30:00'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          example: 0
+        size:
+          type: integer
+          format: int32
+          example: 25
+        totalElements:
           type: integer
           format: int64
+          example: 103
+        totalPages:
+          type: integer
+          format: int32
+          example: 5
+    Envelope:
+      type: object
+      properties:
+        data:
+          type: object
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    BookResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/BookDto'
+    BookListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    GenreResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/GenreDto'
+    GenreListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenreDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    AuthorResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AuthorDto'
+    AuthorListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    WarehouseResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WarehouseDto'
+    WarehouseListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarehouseDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StockResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StockDto'
+    StockListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StockAdjustmentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StockAdjustmentDto'
+    StockAdjustmentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockAdjustmentDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
