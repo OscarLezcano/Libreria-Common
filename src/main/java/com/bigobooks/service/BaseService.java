@@ -10,6 +10,10 @@ import com.bigobooks.repository.BaseRepository;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @deprecated Usar {@code AbstractCrudService} del microservicio correspondiente.
+ */
+@Deprecated
 @RequiredArgsConstructor
 public abstract class BaseService<T extends BaseEntity, R extends BaseRepository<T>> {
 
