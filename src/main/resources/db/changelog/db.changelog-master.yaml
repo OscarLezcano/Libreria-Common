@@ -1229,4 +1229,47 @@ databaseChangeLog:
         referencedColumnNames: id
         referencedTableName: orders
         validate: true
+- changeSet:
+    id: add-price-to-book
+    author: hebercitoo
+    preConditions:
+      - onFail: MARK_RAN
+        onError: MARK_RAN
+        not:
+          - columnExists:
+              tableName: book
+              columnName: price
+    changes:
+    - addColumn:
+        tableName: book
+        columns:
+        - column:
+            name: price
+            type: BIGINT
+- changeSet:
+    id: add-user-id-to-orders
+    author: hebercitoo
+    preConditions:
+      - onFail: MARK_RAN
+        onError: MARK_RAN
+        not:
+          - columnExists:
+              tableName: orders
+              columnName: user_id
+    changes:
+    - addColumn:
+        tableName: orders
+        columns:
+        - column:
+            name: user_id
+            type: BIGINT
+    - addForeignKeyConstraint:
+        baseTableName: orders
+        baseColumnNames: user_id
+        constraintName: fk_orders_user_account
+        referencedTableName: user_account
+        referencedColumnNames: id
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        validate: true
 
