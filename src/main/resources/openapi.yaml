@@ -475,6 +475,12 @@ components:
         quantity:
           type: integer
           example: 10
+    ErrorDto:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Error de ejecución
     Pagination:
       type: object
       properties:
