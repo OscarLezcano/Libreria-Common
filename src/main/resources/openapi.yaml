@@ -746,3 +746,69 @@ components:
             $ref: '#/components/schemas/StockAdjustmentDto'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    SupplierCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        ruc:
+          type: string
+      required:
+        - name
+        - ruc
+
+    SupplierUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        ruc:
+          type: string
+
+    PurchaseCreateRequest:
+      type: object
+      properties:
+        warehouseId:
+          type: integer
+          format: int64
+        supplierId:
+          type: integer
+          format: int64
+        invoiceNumber:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseItemCreate'
+      required:
+        - supplierId
+        - items
+
+    PurchaseItemCreate:
+      type: object
+      properties:
+        bookId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+          description: Cantidad comprada (mayor a 0)
+        unitCost:
+          type: integer
+          format: int64
+          description: Costo unitario
+      required:
+        - bookId
+        - quantity
+        - unitCost
+
+    PurchaseStatusChange:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [PENDING, RECEIVED, CANCELLED]
+      required:
+        - status
+
