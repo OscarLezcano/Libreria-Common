@@ -4,14 +4,12 @@ import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
 
-import com.bigobooks.entities.book.Book;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,7 +40,6 @@ public class UserAccount extends BaseEntity {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @ManyToMany
-    @JoinTable(name = "user_wishlist", joinColumns = @JoinColumn(name = "user_id", nullable = true), inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<Book> wishlist;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserWishlist> wishlist;
 }

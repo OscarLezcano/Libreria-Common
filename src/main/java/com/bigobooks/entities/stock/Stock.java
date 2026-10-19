@@ -1,6 +1,7 @@
 package com.bigobooks.entities.stock;
 
 import com.bigobooks.entities.BaseEntity;
+import com.bigobooks.entities.book.Book;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -13,7 +14,9 @@ import lombok.Setter;
 @Setter
 public class Stock extends BaseEntity {
 
-    private Long bookId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
 
     private int quantity;
 

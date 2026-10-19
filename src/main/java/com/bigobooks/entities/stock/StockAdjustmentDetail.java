@@ -1,6 +1,7 @@
 package com.bigobooks.entities.stock;
 
 import com.bigobooks.entities.BaseEntity;
+import com.bigobooks.entities.book.Book;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -19,8 +20,9 @@ public class StockAdjustmentDetail extends BaseEntity {
     @JoinColumn(name = "stock_adjustment_id")
     private StockAdjustment stockAdjustment;
 
-    @Column(nullable = false)
-    private Long book;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
 
     @Column(nullable = false)
     private String bookName;
