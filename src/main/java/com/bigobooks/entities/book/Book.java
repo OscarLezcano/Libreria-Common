@@ -3,16 +3,14 @@ package com.bigobooks.entities.book;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
+import com.bigobooks.entities.auth.UserWishlist;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
-
-import com.bigobooks.entities.auth.UserAccount;
 
 @Entity
 @Getter
@@ -30,14 +28,12 @@ public class Book extends BaseEntity {
     // Precio de venta en guaranies. Null si el libro todavia no tiene precio.
     private Long price;
 
-    @ManyToMany
-    @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    private List<Genre> genres;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookGenre> genres;
 
-    @ManyToMany
-    @JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private List<Author> authors;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookAuthor> authors;
 
-    @ManyToMany(mappedBy = "wishlist")
-    private List<UserAccount> wishlistedBy;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserWishlist> wishlistedBy;
 }
