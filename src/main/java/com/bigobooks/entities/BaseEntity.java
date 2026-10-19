@@ -3,7 +3,6 @@ package com.bigobooks.entities;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
 import jakarta.persistence.Column;
@@ -16,7 +15,6 @@ import lombok.Setter;
 @MappedSuperclass
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE #{#entityName} SET is_deleted = true WHERE id = ?")
 @SQLRestriction("is_deleted = false")
 public abstract class BaseEntity {
 
