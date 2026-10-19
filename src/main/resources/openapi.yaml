@@ -424,19 +424,18 @@ components:
                 city: Asunción
     StockAdjustmentDetailRequestDto:
       type: object
+      required:
+        - bookId
+        - physicalQuantity
       properties:
-        book:
+        bookId:
           type: integer
           format: int64
+          description: Id del libro ajustado
           example: 1
-        bookName:
-          type: string
-          example: El Principito
-        systemQuantity:
-          type: integer
-          example: 24
         physicalQuantity:
           type: integer
+          description: Cantidad real contada fisicamente
           example: 25
     StockAdjustmentDetailDto:
       allOf:
@@ -453,6 +452,16 @@ components:
               format: date-time
               readOnly: true
               example: '2026-01-15T10:30:00'
+            bookName:
+              type: string
+              readOnly: true
+              description: Nombre del libro, completado por el sistema
+              example: El Principito
+            systemQuantity:
+              type: integer
+              readOnly: true
+              description: Cantidad que registraba el sistema antes de ajustar, completado por el sistema
+              example: 24
     StockAdjustmentRequestDto:
       type: object
       properties:
@@ -464,9 +473,7 @@ components:
           items:
             $ref: '#/components/schemas/StockAdjustmentDetailRequestDto'
           example:
-            - book: 1
-              bookName: El Principito
-              systemQuantity: 24
+            - bookId: 1
               physicalQuantity: 25
     StockAdjustmentDto:
       allOf:
