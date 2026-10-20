@@ -415,6 +415,20 @@ components:
               format: date-time
               readOnly: true
               example: '2026-01-15T10:30:00'
+            bookId:
+              type: integer
+              format: int64
+              readOnly: true
+              description: Id del libro asociado al stock
+              example: 1
+            book:
+              allOf:
+                - $ref: '#/components/schemas/BookDto'
+              readOnly: true
+              description: Libro completo del stock
+              example:
+                id: 1
+                title: El Principito
             warehouse:
               allOf:
                 - $ref: '#/components/schemas/WarehouseDto'
