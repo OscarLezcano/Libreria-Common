@@ -31,28 +31,7 @@ components:
         roleId:
           type: integer
           format: int64
-        wishlist:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookDto'
     RoleDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
-        name:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-        permissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDto'
-    PermissionDto:
       type: object
       properties:
         id:
@@ -134,26 +113,6 @@ components:
               format: date-time
               readOnly: true
               example: '2026-01-15T10:30:00'
-            genres:
-              type: array
-              readOnly: true
-              description: Generos completos del libro
-              items:
-                $ref: '#/components/schemas/GenreDto'
-              example:
-                - id: 1
-                  name: Fantasía
-                  createdAt: '2026-01-15T10:30:00'
-            authors:
-              type: array
-              readOnly: true
-              description: Autores completos del libro
-              items:
-                $ref: '#/components/schemas/AuthorDto'
-              example:
-                - id: 1
-                  name: Antoine de Saint-Exupery
-                  createdAt: '2026-01-15T10:30:00'
     GenreRequestDto:
       type: object
       properties:
@@ -421,21 +380,6 @@ components:
               readOnly: true
               description: Id del libro asociado al stock
               example: 1
-            book:
-              allOf:
-                - $ref: '#/components/schemas/BookDto'
-              readOnly: true
-              description: Libro completo del stock
-              example:
-                id: 1
-                title: El Principito
-            warehouse:
-              allOf:
-                - $ref: '#/components/schemas/WarehouseDto'
-              example:
-                id: 1
-                name: Central Asunción
-                city: Asunción
     StockAdjustmentDetailRequestDto:
       type: object
       required:
@@ -490,24 +434,30 @@ components:
             - bookId: 1
               physicalQuantity: 25
     StockAdjustmentDto:
-      allOf:
-        - $ref: '#/components/schemas/StockAdjustmentRequestDto'
-        - type: object
-          properties:
-            id:
-              type: integer
-              format: int64
-              readOnly: true
-              example: 1
-            createdAt:
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2026-01-15T10:30:00'
-            details:
-              type: array
-              items:
-                $ref: '#/components/schemas/StockAdjustmentDetailDto'
+      type: object
+      properties:
+        note:
+          type: string
+          example: Conteo físico mensual
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+          example: 1
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2026-01-15T10:30:00'
+        detailIds:
+          type: array
+          readOnly: true
+          items:
+            type: integer
+            format: int64
+          example:
+            - 1
+            - 2
     StockQuantityRequestDto:
       type: object
       required:
@@ -787,6 +737,13 @@ components:
             $ref: '#/components/schemas/StockAdjustmentDto'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    StockAdjustmentDetailListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockAdjustmentDetailDto'
     SupplierCreateRequest:
       type: object
       properties:
@@ -852,4 +809,3 @@ components:
           enum: [PENDING, RECEIVED, CANCELLED]
       required:
         - status
-

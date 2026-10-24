@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -21,7 +20,4 @@ public class Role extends BaseEntity {
 
     @OneToMany(mappedBy = "role")
     private List<UserAccount> userAccounts;
-
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RolePermission> permissions;
 }

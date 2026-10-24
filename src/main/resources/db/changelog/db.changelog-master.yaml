@@ -1390,6 +1390,17 @@ databaseChangeLog:
         referencedTableName: user_account
         validate: true
 
-databaseChangeLog:
-  - include:
-      file: db/changelog/changes/19-08-2026-updateDescriptionAndCoverFromBook.yaml
+- changeSet:
+    id: remove-permission-model-20261024
+    author: BigoBooks
+    changes:
+    - dropTable:
+        tableName: role_permission
+    - dropTable:
+        tableName: permission
+    - dropSequence:
+        sequenceName: role_permission_seq
+    - dropSequence:
+        sequenceName: permission_seq
+- include:
+    file: db/changelog/changes/19-08-2026-updateDescriptionAndCoverFromBook.yaml
