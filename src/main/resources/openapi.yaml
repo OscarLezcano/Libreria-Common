@@ -1,0 +1,811 @@
+# cSpell:disable
+openapi: 3.0.3
+info:
+  title: BigoBooks API
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    UserAccountDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        city:
+          type: string
+        warehouseId:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        roleId:
+          type: integer
+          format: int64
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+    RegisterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        city:
+          type: string
+        warehouseId:
+          type: integer
+          format: int64
+    LoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    BookRequestDto:
+      type: object
+      properties:
+        coverUrl:
+          type: string
+          example: 'https://covers.example.com/9789876543210.jpg'
+        title:
+          type: string
+          example: El Principito
+        description:
+          type: string
+          example: Un aviador cae en el desierto del Sahara y conoce a un pequeño príncipe.
+        price:
+          type: integer
+          format: int64
+          description: Precio de venta en guaranies (null si aun no tiene precio)
+          example: 150000
+        genreIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example:
+            - 1
+        authorIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example:
+            - 1
+    BookDto:
+      allOf:
+        - $ref: '#/components/schemas/BookRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+    GenreRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Fantasía
+    GenreDto:
+      allOf:
+        - $ref: '#/components/schemas/GenreRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+    AuthorRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Gabriel García Márquez
+    AuthorDto:
+      allOf:
+        - $ref: '#/components/schemas/AuthorRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+    OrderDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        warehouseId:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+          description: Usuario que realizo la venta (null si no tiene usuario)
+        status:
+          type: string
+          enum:
+            - PENDING
+            - PAID
+            - REFUNDED
+            - CANCELLED
+        totalPrice:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
+        discountAmount:
+          type: integer
+          format: int64
+        bancardNumber:
+          type: string
+        invoiceNumber:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        couponId:
+          type: integer
+          format: int64
+        orderDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderDetailDto'
+    OrderDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        bookId:
+          type: integer
+          format: int64
+        bookName:
+          type: string
+        quantity:
+          type: integer
+        unitPrice:
+          type: integer
+          format: int64
+        discount:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        orderId:
+          type: integer
+          format: int64
+    CouponDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        code:
+          type: string
+        discountPercent:
+          type: integer
+        validUntil:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+    SupplierDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        name:
+          type: string
+        ruc:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+    PurchaseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        warehouseId:
+          type: integer
+          format: int64
+        supplierId:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+            - PENDING
+            - RECEIVED
+            - CANCELLED
+        totalPrice:
+          type: integer
+        invoiceNumber:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        purchaseDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseDetailDto'
+    PurchaseDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        bookId:
+          type: integer
+          format: int64
+        bookName:
+          type: string
+        quantity:
+          type: integer
+        unitCost:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        purchaseId:
+          type: integer
+          format: int64
+    WarehouseRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Central Asunción
+        address:
+          type: string
+          example: Av. España 1234
+        city:
+          type: string
+          example: Asunción
+        phone:
+          type: string
+          example: '+595 21 1234567'
+    WarehouseDto:
+      allOf:
+        - $ref: '#/components/schemas/WarehouseRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+    StockRequestDto:
+      type: object
+      required:
+        - quantity
+        - warehouseId
+      properties:
+        quantity:
+          type: integer
+          example: 25
+        warehouseId:
+          type: integer
+          format: int64
+          description: Id del almacen donde esta el stock
+          example: 1
+    StockDto:
+      allOf:
+        - $ref: '#/components/schemas/StockRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+            bookId:
+              type: integer
+              format: int64
+              readOnly: true
+              description: Id del libro asociado al stock
+              example: 1
+    StockAdjustmentDetailRequestDto:
+      type: object
+      required:
+        - bookId
+        - physicalQuantity
+      properties:
+        bookId:
+          type: integer
+          format: int64
+          description: Id del libro ajustado
+          example: 1
+        physicalQuantity:
+          type: integer
+          description: Cantidad real contada fisicamente
+          example: 25
+    StockAdjustmentDetailDto:
+      allOf:
+        - $ref: '#/components/schemas/StockAdjustmentDetailRequestDto'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              readOnly: true
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2026-01-15T10:30:00'
+            bookName:
+              type: string
+              readOnly: true
+              description: Nombre del libro, completado por el sistema
+              example: El Principito
+            systemQuantity:
+              type: integer
+              readOnly: true
+              description: Cantidad que registraba el sistema antes de ajustar, completado por el sistema
+              example: 24
+    StockAdjustmentRequestDto:
+      type: object
+      properties:
+        note:
+          type: string
+          example: Conteo físico mensual
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockAdjustmentDetailRequestDto'
+          example:
+            - bookId: 1
+              physicalQuantity: 25
+    StockAdjustmentDto:
+      type: object
+      properties:
+        note:
+          type: string
+          example: Conteo físico mensual
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+          example: 1
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2026-01-15T10:30:00'
+        detailIds:
+          type: array
+          readOnly: true
+          items:
+            type: integer
+            format: int64
+          example:
+            - 1
+            - 2
+    StockQuantityRequestDto:
+      type: object
+      required:
+        - quantity
+      properties:
+        quantity:
+          type: integer
+          example: 10
+    OrderCreateRequest:
+      type: object
+      properties:
+        warehouseId:
+          type: integer
+          format: int64
+          description: Almacen de salida (opcional)
+        userId:
+          type: integer
+          format: int64
+          description: Usuario que realiza la compra (opcional)
+        couponCode:
+          type: string
+          description: Codigo de cupon opcional para aplicar al total
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemCreate'
+      required:
+        - items
+    OrderItemCreate:
+      type: object
+      properties:
+        bookId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+          description: Cantidad a comprar (mayor a 0)
+      required:
+        - bookId
+        - quantity
+    OrderUpdateRequest:
+      type: object
+      properties:
+        warehouseId:
+          type: integer
+          format: int64
+          description: Nuevo almacen de salida (null = sin cambios)
+        userId:
+          type: integer
+          format: int64
+          description: Nuevo usuario de la venta (null = sin usuario)
+        bancardNumber:
+          type: string
+        invoiceNumber:
+          type: string
+    OrderStatusChange:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [PENDING, PAID, REFUNDED, CANCELLED]
+      required:
+        - status
+    CouponCreateRequest:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Codigo unico del cupon
+        discountPercent:
+          type: integer
+          description: Descuento entre 1 y 100
+        validUntil:
+          type: string
+          format: date-time
+          description: Vencimiento (opcional; nulo = sin vencimiento)
+      required:
+        - code
+        - discountPercent
+    CouponUpdateRequest:
+      type: object
+      properties:
+        discountPercent:
+          type: integer
+        validUntil:
+          type: string
+          format: date-time
+          description: Vencimiento (null = sin vencimiento)
+    PromotionCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        discountPercent:
+          type: integer
+          description: Descuento entre 1 y 100
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        bookIds:
+          type: array
+          description: Libros que participan de la promocion
+          items:
+            type: integer
+            format: int64
+      required:
+        - name
+        - discountPercent
+        - startDate
+        - endDate
+    PromotionUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        discountPercent:
+          type: integer
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+    PromotionBookAdd:
+      type: object
+      properties:
+        bookIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+      required:
+        - bookIds
+    PromotionDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        name:
+          type: string
+        discountPercent:
+          type: integer
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        bookIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+    ErrorDto:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Error de ejecución
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          example: 0
+        size:
+          type: integer
+          format: int32
+          example: 25
+        totalElements:
+          type: integer
+          format: int64
+          example: 103
+        totalPages:
+          type: integer
+          format: int32
+          example: 5
+    Envelope:
+      type: object
+      properties:
+        data:
+          type: object
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    BookResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/BookDto'
+    BookListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    GenreResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/GenreDto'
+    GenreListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenreDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    AuthorResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AuthorDto'
+    AuthorListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    WarehouseResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WarehouseDto'
+    WarehouseListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarehouseDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StockResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StockDto'
+    StockListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StockAdjustmentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StockAdjustmentDto'
+    StockAdjustmentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockAdjustmentDto'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StockAdjustmentDetailListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockAdjustmentDetailDto'
+    SupplierCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        ruc:
+          type: string
+      required:
+        - name
+        - ruc
+
+    SupplierUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        ruc:
+          type: string
+
+    PurchaseCreateRequest:
+      type: object
+      properties:
+        warehouseId:
+          type: integer
+          format: int64
+        supplierId:
+          type: integer
+          format: int64
+        invoiceNumber:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseItemCreate'
+      required:
+        - supplierId
+        - items
+
+    PurchaseItemCreate:
+      type: object
+      properties:
+        bookId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+          description: Cantidad comprada (mayor a 0)
+        unitCost:
+          type: integer
+          format: int64
+          description: Costo unitario
+      required:
+        - bookId
+        - quantity
+        - unitCost
+
+    PurchaseStatusChange:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [PENDING, RECEIVED, CANCELLED]
+      required:
+        - status
