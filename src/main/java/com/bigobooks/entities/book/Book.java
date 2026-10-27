@@ -3,8 +3,6 @@ package com.bigobooks.entities.book;
 import java.util.List;
 
 import com.bigobooks.entities.BaseEntity;
-import com.bigobooks.entities.auth.UserWishlist;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,7 +31,4 @@ public class Book extends BaseEntity {
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookAuthor> authors;
-
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UserWishlist> wishlistedBy;
 }

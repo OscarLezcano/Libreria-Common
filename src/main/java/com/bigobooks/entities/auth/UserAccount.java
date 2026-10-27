@@ -40,6 +40,4 @@ public class UserAccount extends BaseEntity {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UserWishlist> wishlist;
 }
