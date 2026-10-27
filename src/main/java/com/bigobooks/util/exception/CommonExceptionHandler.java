@@ -1,17 +1,18 @@
 package com.bigobooks.util.exception;
 
-import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
@@ -33,13 +34,19 @@ public class CommonExceptionHandler {
 	public ResponseEntity<ErrorDto> handleValidation(MethodArgumentNotValidException ex) {
 		String message = ex.getBindingResult().getFieldErrors().stream()
 				.map(error -> error.getField() + ": " + error.getDefaultMessage())
-				.collect(Collectors.joining(", "));
-		return build(HttpStatus.BAD_REQUEST, message.isBlank() ? "Error de validacion" : message);
+				.findFirst()
+				.orElse(ErrorMessages.VALIDATION_ERROR);
+		return build(HttpStatus.BAD_REQUEST, message);
 	}
 
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ResponseEntity<ErrorDto> handleConstraintViolation(ConstraintViolationException ex) {
-		return build(HttpStatus.BAD_REQUEST, ex.getMessage());
+		String message = ex.getConstraintViolations().stream()
+				.findFirst()
+				.map(violation -> leafField(violation.getPropertyPath().toString()) + ": "
+						+ violation.getMessage())
+				.orElse(ErrorMessages.VALIDATION_ERROR);
+		return build(HttpStatus.BAD_REQUEST, message);
 	}
 
 	@ExceptionHandler(IllegalArgumentException.class)
@@ -49,36 +56,56 @@ public class CommonExceptionHandler {
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public ResponseEntity<ErrorDto> handleUnreadableRequest(HttpMessageNotReadableException ex) {
-		return build(HttpStatus.BAD_REQUEST, "Cuerpo de la peticion invalido");
+		return build(HttpStatus.BAD_REQUEST, ErrorMessages.INVALID_REQUEST_BODY);
+	}
+
+	@ExceptionHandler(MissingServletRequestParameterException.class)
+	public ResponseEntity<ErrorDto> handleMissingParameter(MissingServletRequestParameterException ex) {
+		return build(HttpStatus.BAD_REQUEST, ErrorMessages.MISSING_PARAMETER_PREFIX + ex.getParameterName());
 	}
 
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	public ResponseEntity<ErrorDto> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
-		return build(HttpStatus.BAD_REQUEST, "Parametro invalido: " + ex.getName());
+		return build(HttpStatus.BAD_REQUEST, ErrorMessages.INVALID_PARAMETER_PREFIX + ex.getName());
+	}
+
+	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+	public ResponseEntity<ErrorDto> handleMethodNotSupported(HttpRequestMethodNotSupportedException ex) {
+		return build(HttpStatus.METHOD_NOT_ALLOWED, ErrorMessages.METHOD_NOT_ALLOWED);
+	}
+
+	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+	public ResponseEntity<ErrorDto> handleMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex) {
+		return build(HttpStatus.UNSUPPORTED_MEDIA_TYPE, ErrorMessages.UNSUPPORTED_MEDIA_TYPE);
 	}
 
 	@ExceptionHandler(NoResourceFoundException.class)
 	public ResponseEntity<ErrorDto> handleNoResource(NoResourceFoundException ex) {
-		return build(HttpStatus.NOT_FOUND, "Recurso no encontrado");
+		return build(HttpStatus.NOT_FOUND, ErrorMessages.RESOURCE_NOT_FOUND);
 	}
 
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<ErrorDto> handleDataIntegrity(DataIntegrityViolationException ex) {
-		return build(HttpStatus.CONFLICT, "Conflicto de integridad con los datos");
+		return build(HttpStatus.CONFLICT, ErrorMessages.DATA_CONFLICT);
 	}
 
 	@ExceptionHandler(AccessDeniedException.class)
 	public ResponseEntity<ErrorDto> handleAccessDenied(AccessDeniedException ex) {
-		return build(HttpStatus.FORBIDDEN, "No posees permisos para acceder a este recurso");
+		return build(HttpStatus.FORBIDDEN, ErrorMessages.ACCESS_DENIED);
 	}
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorDto> handleUnexpected(Exception ex) {
 		log.error("Error no controlado", ex);
-		return build(HttpStatus.INTERNAL_SERVER_ERROR, "Error interno del servidor");
+		return build(HttpStatus.INTERNAL_SERVER_ERROR, ErrorMessages.INTERNAL_SERVER_ERROR);
 	}
 
 	private ResponseEntity<ErrorDto> build(HttpStatus status, String message) {
 		return ResponseEntity.status(status).body(new ErrorDto().message(message));
+	}
+
+	private String leafField(String propertyPath) {
+		int separator = propertyPath.lastIndexOf('.');
+		return separator >= 0 ? propertyPath.substring(separator + 1) : propertyPath;
 	}
 }
