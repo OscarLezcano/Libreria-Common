@@ -22,11 +22,10 @@ public class RoleAuthorization {
 			return false;
 		}
 
-		String prefix = environment.getProperty("security.jwt.authority-prefix", "ROLE_");
 		String configuredRoles = environment.getProperty("security.roles." + policy, "");
 		return Arrays.stream(configuredRoles.split(","))
 				.map(String::trim)
 				.anyMatch(role -> authentication.getAuthorities().stream()
-						.anyMatch(authority -> (prefix + role).equals(authority.getAuthority())));
+						.anyMatch(authority -> ("ROLE_" + role).equals(authority.getAuthority())));
 	}
 }
