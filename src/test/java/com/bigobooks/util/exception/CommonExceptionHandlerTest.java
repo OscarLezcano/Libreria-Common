@@ -34,6 +34,14 @@ class CommonExceptionHandlerTest {
 	}
 
 	@Test
+	void returnsUnauthorizedStatusForUnauthorizedException() {
+		var response = handler.handleApiException(new UnauthorizedException("Credenciales invalidas"));
+
+		assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+		assertEquals("Credenciales invalidas", response.getBody().getMessage());
+	}
+
+	@Test
 	void returnsInternalServerErrorForUnexpectedException() {
 		var response = handler.handleUnexpected(new RuntimeException("boom"));
 
