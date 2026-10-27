@@ -1,4 +1,4 @@
-package com.bigobooks.shared.web;
+package com.bigobooks.util.exception;
 
 import java.util.stream.Collectors;
 
@@ -16,7 +16,6 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.bigobooks.dto.ErrorDto;
-import com.bigobooks.shared.exception.ApiException;
 
 import jakarta.validation.ConstraintViolationException;
 

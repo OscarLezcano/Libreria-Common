@@ -1,4 +1,4 @@
-package com.bigobooks.shared.exception;
+package com.bigobooks.util.exception;
 
 import org.springframework.http.HttpStatus;
 

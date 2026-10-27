@@ -1,11 +1,9 @@
-package com.bigobooks.shared.web;
+package com.bigobooks.util.exception;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-
-import com.bigobooks.shared.exception.ApiException;
 
 class CommonExceptionHandlerTest {
 
