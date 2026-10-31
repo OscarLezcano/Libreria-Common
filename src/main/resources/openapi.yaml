@@ -838,5 +838,8 @@ components:
         status:
           type: string
           enum: [PENDING, RECEIVED, CANCELLED]
+        invoiceNumber:
+          type: string
+          description: Numero de factura obligatorio al pasar la compra a RECEIVED
       required:
         - status
