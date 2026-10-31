@@ -196,10 +196,15 @@ components:
         couponId:
           type: integer
           format: int64
-        orderDetails:
+        orderDetailIds:
           type: array
+          description: >-
+            Ids de los detalles de la venta. El desglose completo (libro,
+            cantidad, precio y descuento) se consulta en
+            GET /orders/{id}/details; asi la venta no anida objetos.
           items:
-            $ref: '#/components/schemas/OrderDetailDto'
+            type: integer
+            format: int64
     OrderDetailDto:
       type: object
       properties:
@@ -227,6 +232,21 @@ components:
         orderId:
           type: integer
           format: int64
+    BestSellingBookDto:
+      type: object
+      description: Libro vendido, agregado por cantidad de unidades.
+      properties:
+        bookId:
+          type: integer
+          format: int64
+          description: Id del libro en el catalogo.
+        bookName:
+          type: string
+          description: Nombre del libro al momento de la venta.
+        totalSold:
+          type: integer
+          format: int64
+          description: Unidades vendidas en ventas pagadas.
     CouponDto:
       type: object
       properties:
