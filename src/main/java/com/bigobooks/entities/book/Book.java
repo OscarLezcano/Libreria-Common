@@ -26,9 +26,9 @@ public class Book extends BaseEntity {
     // Precio de venta en guaranies. Null si el libro todavia no tiene precio.
     private Long price;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<BookGenre> genres;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<BookAuthor> authors;
 }
