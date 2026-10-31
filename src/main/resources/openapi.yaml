@@ -778,6 +778,8 @@ components:
         warehouseId:
           type: integer
           format: int64
+          readOnly: true
+          description: Ignorado en la creacion; el almacen se obtiene del token JWT del usuario autenticado
         supplierId:
           type: integer
           format: int64
