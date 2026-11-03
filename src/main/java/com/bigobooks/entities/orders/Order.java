@@ -12,6 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Order extends BaseEntity {
+
+    @Column(nullable = false, unique = true, updatable = false, length = 40)
+    private String orderNumber;
 
     Long warehouseId;
 
@@ -59,6 +63,9 @@ public class Order extends BaseEntity {
     // Datos fake para simular bancard
     private String bancardNumber;
     private String invoiceNumber;
+    private String invoiceBusinessName;
+    private String invoiceName;
+    private String invoiceLastName;
 
     @ManyToOne
     @JoinColumn(name = "coupon_id", nullable = true)
@@ -66,4 +73,11 @@ public class Order extends BaseEntity {
 
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
+
+    @PrePersist
+    private void assignOrderNumber() {
+        if (orderNumber == null || orderNumber.isBlank()) {
+            orderNumber = "PED-" + java.util.UUID.randomUUID().toString().toUpperCase();
+        }
+    }
 }
