@@ -1,6 +1,8 @@
 package com.bigobooks.util.security;
 
 import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
@@ -16,16 +18,23 @@ public class RoleAuthorization {
 		this.environment = environment;
 	}
 
+	@SuppressWarnings("null")
 	public boolean allows(String policy) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
 		if (authentication == null) {
 			return false;
 		}
 
 		String configuredRoles = environment.getProperty("security.roles." + policy, "");
+
+		Set<String> authorities = authentication.getAuthorities().stream()
+				.map(authority -> authority.getAuthority())
+				.collect(Collectors.toSet());
+
 		return Arrays.stream(configuredRoles.split(","))
 				.map(String::trim)
-				.anyMatch(role -> authentication.getAuthorities().stream()
-						.anyMatch(authority -> ("ROLE_" + role).equals(authority.getAuthority())));
+				.map(role -> "ROLE_" + role)
+				.anyMatch(role -> authorities.contains(role) || authorities.contains("ROLE_ADMIN"));
 	}
 }
