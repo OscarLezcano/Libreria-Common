@@ -80,6 +80,12 @@ components:
         warehouseId:
           type: integer
           format: int64
+      required:
+        - name
+        - lastName
+        - email
+        - password
+        - city
     LoginDto:
       type: object
       properties:
@@ -87,6 +93,23 @@ components:
           type: string
         password:
           type: string
+      required:
+        - email
+        - password
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        tokenType:
+          type: string
+          example: Bearer
+        expiresIn:
+          type: integer
+          format: int64
+          description: Vigencia del token en segundos
+        user:
+          $ref: '#/components/schemas/UserAccountDto'
     BookRequestDto:
       type: object
       properties:
