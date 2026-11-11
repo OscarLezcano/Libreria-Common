@@ -4,6 +4,7 @@ public enum ResourceType {
 
 	ID("id"),
 	CODE("código"),
+	ROLE("rol"),
 	PURCHASE("compra"),
 	SUPPLIER("proveedor"),
 	AUTHOR("autor"),

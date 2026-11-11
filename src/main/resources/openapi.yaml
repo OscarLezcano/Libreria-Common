@@ -28,9 +28,29 @@ components:
           type: string
           format: date-time
           readOnly: true
-        roleId:
-          type: integer
-          format: int64
+        roleIds:
+          type: array
+          readOnly: true
+          items:
+            type: integer
+            format: int64
+        roleNames:
+          type: array
+          readOnly: true
+          items:
+            type: string
+    UserRolesRequestDto:
+      type: object
+      required:
+        - roleIds
+      properties:
+        roleIds:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: integer
+            format: int64
     RoleDto:
       type: object
       properties:
