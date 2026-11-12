@@ -63,7 +63,7 @@ public class Order extends BaseEntity {
     // Datos fake para simular bancard
     private String bancardNumber;
     private String invoiceNumber;
-    private String invoiceBusinessName;
+    private String invoiceRuc;
     private String invoiceName;
     private String invoiceLastName;
 
