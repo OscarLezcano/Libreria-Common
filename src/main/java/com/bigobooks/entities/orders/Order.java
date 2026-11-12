@@ -66,6 +66,7 @@ public class Order extends BaseEntity {
     private String invoiceRuc;
     private String invoiceName;
     private String invoiceLastName;
+    private String invoicePhone;
 
     @ManyToOne
     @JoinColumn(name = "coupon_id", nullable = true)

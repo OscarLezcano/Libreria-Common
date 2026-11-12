@@ -245,6 +245,9 @@ components:
         invoiceLastName:
           type: string
           description: Apellido para la factura
+        invoicePhone:
+          type: string
+          description: Telefono del comprador normalizado a formato internacional
         createdAt:
           type: string
           format: date-time
@@ -574,6 +577,9 @@ components:
         invoiceLastName:
           type: string
           description: Apellido para la factura
+        invoicePhone:
+          type: string
+          description: Telefono del comprador
         items:
           type: array
           items:
@@ -582,6 +588,7 @@ components:
         - invoiceRuc
         - invoiceName
         - invoiceLastName
+        - invoicePhone
         - items
     OrderItemCreate:
       type: object
@@ -620,6 +627,9 @@ components:
         invoiceLastName:
           type: string
           description: Nuevo apellido para la factura
+        invoicePhone:
+          type: string
+          description: Nuevo telefono del comprador
     OrderStatusChange:
       type: object
       properties:
