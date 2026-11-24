@@ -198,6 +198,24 @@ components:
               format: date-time
               readOnly: true
               example: '2026-01-15T10:30:00'
+    OrderShippingDto:
+      type: object
+      description: Snapshot del destinatario del pedido.
+      properties:
+        name:
+          type: string
+        lastName:
+          type: string
+        department:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        reference:
+          type: string
+        phone:
+          type: string
     OrderDto:
       type: object
       properties:
@@ -223,6 +241,10 @@ components:
             - PAID
             - REFUNDED
             - CANCELLED
+        numeroOrden:
+          type: string
+          pattern: '^\d{8}$'
+          description: Identificador publico del pedido (8 digitos).
         totalPrice:
           type: integer
           format: int64
@@ -232,8 +254,9 @@ components:
         discountAmount:
           type: integer
           format: int64
-        bancardNumber:
+        couponCode:
           type: string
+          description: Codigo snapshot del cupon aplicado.
         invoiceNumber:
           type: string
         invoiceRuc:
@@ -248,6 +271,16 @@ components:
         invoicePhone:
           type: string
           description: Telefono del comprador normalizado a formato internacional
+        shipping:
+          $ref: '#/components/schemas/OrderShippingDto'
+        productCount:
+          type: integer
+          format: int64
+          description: Cantidad de libros distintos del pedido.
+        totalUnits:
+          type: integer
+          format: int64
+          description: Cantidad total de unidades del pedido.
         createdAt:
           type: string
           format: date-time
@@ -257,13 +290,15 @@ components:
           format: int64
         orderDetailIds:
           type: array
-          description: >-
-            Ids de los detalles de la venta. El desglose completo (libro,
-            cantidad, precio y descuento) se consulta en
-            GET /orders/{id}/details; asi la venta no anida objetos.
+          description: Ids internos de los detalles (solo uso administrativo).
           items:
             type: integer
             format: int64
+        orderDetails:
+          type: array
+          description: Desglose publico del pedido (el mismo array de /numero/{numeroOrden}/details).
+          items:
+            $ref: '#/components/schemas/OrderDetailDto'
     OrderDetailDto:
       type: object
       properties:
@@ -284,6 +319,16 @@ components:
         discount:
           type: integer
           format: int64
+        lineTotal:
+          type: integer
+          format: int64
+          description: unitPrice * quantity - discount, calculado por el servidor.
+        coverSrc:
+          type: string
+        authors:
+          type: array
+          items:
+            type: string
         createdAt:
           type: string
           format: date-time
@@ -580,6 +625,27 @@ components:
         invoicePhone:
           type: string
           description: Telefono del comprador
+        shippingName:
+          type: string
+          description: Nombre del destinatario
+        shippingLastName:
+          type: string
+          description: Apellido del destinatario
+        shippingDepartment:
+          type: string
+          description: Departamento del destinatario
+        shippingCity:
+          type: string
+          description: Ciudad del destinatario
+        shippingAddress:
+          type: string
+          description: Direccion del destinatario
+        shippingReference:
+          type: string
+          description: Referencia opcional de la direccion
+        shippingPhone:
+          type: string
+          description: Telefono del destinatario
         items:
           type: array
           items:
@@ -589,6 +655,12 @@ components:
         - invoiceName
         - invoiceLastName
         - invoicePhone
+        - shippingName
+        - shippingLastName
+        - shippingDepartment
+        - shippingCity
+        - shippingAddress
+        - shippingPhone
         - items
     OrderItemCreate:
       type: object
@@ -614,8 +686,6 @@ components:
           type: integer
           format: int64
           description: Nuevo usuario de la venta (null = sin usuario)
-        bancardNumber:
-          type: string
         invoiceNumber:
           type: string
         invoiceRuc:
@@ -630,12 +700,42 @@ components:
         invoicePhone:
           type: string
           description: Nuevo telefono del comprador
+        shippingName:
+          type: string
+          description: Nuevo nombre del destinatario
+        shippingLastName:
+          type: string
+          description: Nuevo apellido del destinatario
+        shippingDepartment:
+          type: string
+          description: Nuevo departamento del destinatario
+        shippingCity:
+          type: string
+          description: Nueva ciudad del destinatario
+        shippingAddress:
+          type: string
+          description: Nueva direccion del destinatario
+        shippingReference:
+          type: string
+          description: Nueva referencia de la direccion
+        shippingPhone:
+          type: string
+          description: Nuevo telefono del destinatario
     OrderStatusChange:
       type: object
       properties:
         status:
           type: string
           enum: [PENDING, PAID, REFUNDED, CANCELLED]
+      required:
+        - status
+    OrderClientStatusChange:
+      type: object
+      description: Transiciones permitidas para el flujo del cliente.
+      properties:
+        status:
+          type: string
+          enum: [PAID, CANCELLED]
       required:
         - status
     CouponCreateRequest:
