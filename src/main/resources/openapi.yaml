@@ -86,6 +86,81 @@ components:
         - email
         - password
         - city
+    ContactRequest:
+      type: object
+      required:
+        - name
+        - email
+        - subject
+        - message
+      properties:
+        name:
+          type: string
+          maxLength: 120
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        subject:
+          type: string
+          maxLength: 160
+        message:
+          type: string
+          maxLength: 5000
+    UserCreateRequest:
+      type: object
+      required:
+        - name
+        - lastName
+        - email
+        - password
+        - city
+        - roleIds
+      properties:
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        city:
+          type: string
+        warehouseId:
+          type: integer
+          format: int64
+        roleIds:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: integer
+            format: int64
+    UserUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        city:
+          type: string
+        warehouseId:
+          type: integer
+          format: int64
+        roleIds:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+            format: int64
     LoginDto:
       type: object
       properties:
@@ -362,9 +437,24 @@ components:
           type: string
         discountPercent:
           type: integer
+        validFrom:
+          type: string
+          format: date-time
+          description: Inicio de vigencia (opcional; nulo = sin fecha de inicio)
         validUntil:
           type: string
           format: date-time
+          description: Fin de vigencia (opcional; nulo = sin vencimiento)
+        bookIds:
+          type: array
+          description: Libros a los que aplica. Vacio = todo el pedido.
+          items:
+            type: integer
+            format: int64
+          readOnly: true
+        singleUsePerUser:
+          type: boolean
+          description: Si es true, cada usuario puede usarlo una sola vez.
         createdAt:
           type: string
           format: date-time
@@ -747,10 +837,23 @@ components:
         discountPercent:
           type: integer
           description: Descuento entre 1 y 100
+        validFrom:
+          type: string
+          format: date-time
+          description: Inicio de vigencia (opcional; nulo = sin fecha de inicio)
         validUntil:
           type: string
           format: date-time
           description: Vencimiento (opcional; nulo = sin vencimiento)
+        bookIds:
+          type: array
+          description: Libros a los que aplica. Vacio = todo el pedido.
+          items:
+            type: integer
+            format: int64
+        singleUsePerUser:
+          type: boolean
+          description: Si es true, cada usuario puede usarlo una sola vez.
       required:
         - code
         - discountPercent
@@ -759,10 +862,23 @@ components:
       properties:
         discountPercent:
           type: integer
+        validFrom:
+          type: string
+          format: date-time
+          description: Inicio de vigencia (null = sin fecha de inicio)
         validUntil:
           type: string
           format: date-time
           description: Vencimiento (null = sin vencimiento)
+        bookIds:
+          type: array
+          description: Libros a los que aplica. Vacio = todo el pedido.
+          items:
+            type: integer
+            format: int64
+        singleUsePerUser:
+          type: boolean
+          description: Si es true, cada usuario puede usarlo una sola vez.
     PromotionCreateRequest:
       type: object
       properties:
