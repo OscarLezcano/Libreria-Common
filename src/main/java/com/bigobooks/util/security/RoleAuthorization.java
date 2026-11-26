@@ -1,6 +1,7 @@
 package com.bigobooks.util.security;
 
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,11 +31,27 @@ public class RoleAuthorization {
 
 		Set<String> authorities = authentication.getAuthorities().stream()
 				.map(authority -> authority.getAuthority())
+				.map(RoleAuthorization::canonical)
 				.collect(Collectors.toSet());
 
 		return Arrays.stream(configuredRoles.split(","))
-				.map(String::trim)
-				.map(role -> "ROLE_" + role)
-				.anyMatch(role -> authorities.contains(role) || authorities.contains("ROLE_ADMIN"));
+				.map(RoleAuthorization::canonical)
+				.anyMatch(role -> authorities.contains(role) || authorities.contains("ADMIN"));
+	}
+
+	/**
+	 * La base de demo usa SALLER para vendedor y Compras usa VENDEDOR; otros
+	 * modulos usan SELLER. Se normalizan para que los tres alias representen
+	 * el mismo rol sin duplicar permisos en cada application.properties.
+	 */
+	private static String canonical(String role) {
+		String normalized = role == null ? "" : role.trim().toUpperCase(Locale.ROOT);
+		if (normalized.startsWith("ROLE_")) {
+			normalized = normalized.substring("ROLE_".length());
+		}
+		return switch (normalized) {
+			case "SALLER", "VENDEDOR" -> "SELLER";
+			default -> normalized;
+		};
 	}
 }
